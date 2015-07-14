@@ -13,6 +13,11 @@
 		0465290C1B558FC900FA126B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0465290B1B558FC900FA126B /* Images.xcassets */; };
 		0465290F1B558FC900FA126B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0465290D1B558FC900FA126B /* LaunchScreen.xib */; };
 		0465291B1B558FC900FA126B /* Tip_ExtraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0465291A1B558FC900FA126B /* Tip_ExtraTests.swift */; };
+		04E17A401B55934F00608F85 /* TipExtraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E17A3F1B55934F00608F85 /* TipExtraViewController.swift */; };
+		04E17A421B55936500608F85 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E17A411B55936500608F85 /* RegisterViewController.swift */; };
+		04E17A441B55955F00608F85 /* CardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E17A431B55955F00608F85 /* CardInfoViewController.swift */; };
+		04E17A461B559EB200608F85 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E17A451B559EB200608F85 /* LoginViewController.swift */; };
+		04E17A491B559F3400608F85 /* ActivityButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E17A481B559F3400608F85 /* ActivityButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +41,11 @@
 		046529141B558FC900FA126B /* Tip ExtraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tip ExtraTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		046529191B558FC900FA126B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0465291A1B558FC900FA126B /* Tip_ExtraTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tip_ExtraTests.swift; sourceTree = "<group>"; };
+		04E17A3F1B55934F00608F85 /* TipExtraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipExtraViewController.swift; sourceTree = "<group>"; };
+		04E17A411B55936500608F85 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		04E17A431B55955F00608F85 /* CardInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardInfoViewController.swift; sourceTree = "<group>"; };
+		04E17A451B559EB200608F85 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		04E17A481B559F3400608F85 /* ActivityButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +88,11 @@
 			isa = PBXGroup;
 			children = (
 				046529041B558FC900FA126B /* AppDelegate.swift */,
+				04E17A3F1B55934F00608F85 /* TipExtraViewController.swift */,
 				046529061B558FC900FA126B /* ViewController.swift */,
+				04E17A481B559F3400608F85 /* ActivityButton.swift */,
+				04E17A471B559EC000608F85 /* Registration */,
+				04E17A451B559EB200608F85 /* LoginViewController.swift */,
 				046529081B558FC900FA126B /* Main.storyboard */,
 				0465290B1B558FC900FA126B /* Images.xcassets */,
 				0465290D1B558FC900FA126B /* LaunchScreen.xib */,
@@ -110,6 +124,15 @@
 				046529191B558FC900FA126B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		04E17A471B559EC000608F85 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				04E17A411B55936500608F85 /* RegisterViewController.swift */,
+				04E17A431B55955F00608F85 /* CardInfoViewController.swift */,
+			);
+			name = Registration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,8 +235,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04E17A461B559EB200608F85 /* LoginViewController.swift in Sources */,
 				046529071B558FC900FA126B /* ViewController.swift in Sources */,
+				04E17A441B55955F00608F85 /* CardInfoViewController.swift in Sources */,
+				04E17A491B559F3400608F85 /* ActivityButton.swift in Sources */,
 				046529051B558FC900FA126B /* AppDelegate.swift in Sources */,
+				04E17A401B55934F00608F85 /* TipExtraViewController.swift in Sources */,
+				04E17A421B55936500608F85 /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +437,7 @@
 				046529201B558FC900FA126B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		046529211B558FC900FA126B /* Build configuration list for PBXNativeTarget "Tip ExtraTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +446,7 @@
 				046529231B558FC900FA126B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
