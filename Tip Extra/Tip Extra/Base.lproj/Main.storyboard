@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OLJ-Hh-0s6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9Yp-Lw-da6">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -114,19 +114,35 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="kB2-8W-JWl"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ex3-Os-MZ9">
+                                <rect key="frame" x="0.0" y="555" width="600" height="45"/>
+                                <color key="backgroundColor" red="0.0" green="0.74117647060000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="xBh-At-qFl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="Order">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Ex3-Os-MZ9" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="5if-pf-lvB"/>
                             <constraint firstAttribute="trailing" secondItem="tWV-Vc-m47" secondAttribute="trailing" id="VzW-QP-YLT"/>
+                            <constraint firstAttribute="trailing" secondItem="Ex3-Os-MZ9" secondAttribute="trailing" id="bUO-Vr-bky"/>
                             <constraint firstItem="tWV-Vc-m47" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="jgI-Eu-aWZ"/>
                             <constraint firstItem="0mR-kz-s2j" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="177" id="ojv-Zn-9EW"/>
                             <constraint firstItem="tWV-Vc-m47" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="uXp-8x-Wc2"/>
                             <constraint firstAttribute="centerX" secondItem="0mR-kz-s2j" secondAttribute="centerX" id="wFU-I5-J6B"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Ex3-Os-MZ9" secondAttribute="bottom" id="ytK-tf-n0d"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="tWV-Vc-m47" secondAttribute="bottom" id="zTz-bP-ZJI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uSP-Ji-2g6"/>
                     <connections>
+                        <outlet property="orderButton" destination="Ex3-Os-MZ9" id="QAI-j5-7Kg"/>
                         <outlet property="theTableView" destination="tWV-Vc-m47" id="ln1-JR-3AV"/>
                     </connections>
                 </viewController>
