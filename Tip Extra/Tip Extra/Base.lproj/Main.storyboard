@@ -46,7 +46,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fD9-4X-bPV" customClass="ActivityButton" customModule="Tip_Extra" customModuleProvider="target">
                                 <rect key="frame" x="185" y="204" width="230" height="35"/>
-                                <color key="backgroundColor" red="0.0" green="0.2470588235" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.74117647060000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="3Ia-Zr-D5r"/>
                                     <constraint firstAttribute="width" constant="230" id="t6Y-NH-FGR"/>
@@ -107,7 +107,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="tWV-Vc-m47">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="491"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="vXZ-lx-hvc" id="d0s-p2-L7o"/>
@@ -125,6 +125,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="orderButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="NfD-9E-ubi"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -137,7 +140,7 @@
                             <constraint firstItem="tWV-Vc-m47" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="uXp-8x-Wc2"/>
                             <constraint firstAttribute="centerX" secondItem="0mR-kz-s2j" secondAttribute="centerX" id="wFU-I5-J6B"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Ex3-Os-MZ9" secondAttribute="bottom" id="ytK-tf-n0d"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="tWV-Vc-m47" secondAttribute="bottom" id="zTz-bP-ZJI"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="tWV-Vc-m47" secondAttribute="bottom" constant="45" id="zTz-bP-ZJI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uSP-Ji-2g6"/>
@@ -210,7 +213,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7gN-Zm-USX" customClass="ActivityButton" customModule="Tip_Extra" customModuleProvider="target">
                                 <rect key="frame" x="185" y="204" width="230" height="35"/>
-                                <color key="backgroundColor" red="0.0" green="0.2470588235" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.74117647060000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="wMF-I8-rPS"/>
                                     <constraint firstAttribute="width" constant="230" id="zIt-7d-Q8E"/>
@@ -296,7 +299,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AgV-XC-V7b" customClass="ActivityButton" customModule="Tip_Extra" customModuleProvider="target">
                                 <rect key="frame" x="185" y="242" width="230" height="35"/>
-                                <color key="backgroundColor" red="0.0" green="0.2470588235" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.74117647060000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="B8p-q0-7g0"/>
                                     <constraint firstAttribute="width" constant="230" id="awn-xd-YTg"/>

@@ -17,6 +17,10 @@
 		046C06DA1B55A3A00043EBFF /* MenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046C06D81B55A3A00043EBFF /* MenuCell.xib */; };
 		047B3BE11B56A3580079735B /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B3BE01B56A3580079735B /* Order.swift */; };
 		047B3BE31B56A3600079735B /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B3BE21B56A3600079735B /* MenuItem.swift */; };
+		047B3BE71B56DDC50079735B /* ConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B3BE61B56DDC50079735B /* ConfirmationView.swift */; };
+		047B3BE91B56DEC00079735B /* ConfirmationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047B3BE81B56DEC00079735B /* ConfirmationView.xib */; };
+		047B3BEF1B56E36F0079735B /* OrderCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B3BEE1B56E36F0079735B /* OrderCompleteView.swift */; };
+		047B3BF11B56E37B0079735B /* OrderCompleteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047B3BF01B56E37B0079735B /* OrderCompleteView.xib */; };
 		04E17A401B55934F00608F85 /* TipExtraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E17A3F1B55934F00608F85 /* TipExtraViewController.swift */; };
 		04E17A421B55936500608F85 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E17A411B55936500608F85 /* RegisterViewController.swift */; };
 		04E17A441B55955F00608F85 /* CardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E17A431B55955F00608F85 /* CardInfoViewController.swift */; };
@@ -49,6 +53,10 @@
 		046C06D81B55A3A00043EBFF /* MenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuCell.xib; sourceTree = "<group>"; };
 		047B3BE01B56A3580079735B /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		047B3BE21B56A3600079735B /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
+		047B3BE61B56DDC50079735B /* ConfirmationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmationView.swift; sourceTree = "<group>"; };
+		047B3BE81B56DEC00079735B /* ConfirmationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfirmationView.xib; sourceTree = "<group>"; };
+		047B3BEE1B56E36F0079735B /* OrderCompleteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCompleteView.swift; sourceTree = "<group>"; };
+		047B3BF01B56E37B0079735B /* OrderCompleteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCompleteView.xib; sourceTree = "<group>"; };
 		04E17A3F1B55934F00608F85 /* TipExtraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipExtraViewController.swift; sourceTree = "<group>"; };
 		04E17A411B55936500608F85 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		04E17A431B55955F00608F85 /* CardInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardInfoViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +149,10 @@
 				04E17A481B559F3400608F85 /* ActivityButton.swift */,
 				046C06D71B55A3A00043EBFF /* MenuCell.swift */,
 				046C06D81B55A3A00043EBFF /* MenuCell.xib */,
+				047B3BE61B56DDC50079735B /* ConfirmationView.swift */,
+				047B3BE81B56DEC00079735B /* ConfirmationView.xib */,
+				047B3BEE1B56E36F0079735B /* OrderCompleteView.swift */,
+				047B3BF01B56E37B0079735B /* OrderCompleteView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -246,6 +258,8 @@
 				0465290A1B558FC900FA126B /* Main.storyboard in Resources */,
 				0465290F1B558FC900FA126B /* LaunchScreen.xib in Resources */,
 				046C06DA1B55A3A00043EBFF /* MenuCell.xib in Resources */,
+				047B3BE91B56DEC00079735B /* ConfirmationView.xib in Resources */,
+				047B3BF11B56E37B0079735B /* OrderCompleteView.xib in Resources */,
 				0465290C1B558FC900FA126B /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,7 +278,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				047B3BE71B56DDC50079735B /* ConfirmationView.swift in Sources */,
 				04E17A461B559EB200608F85 /* LoginViewController.swift in Sources */,
+				047B3BEF1B56E36F0079735B /* OrderCompleteView.swift in Sources */,
 				046529071B558FC900FA126B /* MenuViewController.swift in Sources */,
 				04E17A441B55955F00608F85 /* CardInfoViewController.swift in Sources */,
 				047B3BE11B56A3580079735B /* Order.swift in Sources */,

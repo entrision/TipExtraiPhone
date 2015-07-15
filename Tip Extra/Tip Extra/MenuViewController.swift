@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MenuViewController: UIViewController {
+class MenuViewController: TipExtraViewController {
     
     let cellID = "MenuCellID"
     
@@ -20,6 +20,8 @@ class MenuViewController: UIViewController {
     var theOrder = Order.new()
     var menuItems = NSArray()
     var orderItems = NSMutableArray()
+    var restrictionView = UIView()
+    var totalPrice: Float = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,18 +35,18 @@ class MenuViewController: UIViewController {
         
         dummyCell = NSBundle.mainBundle().loadNibNamed("MenuCell", owner: self, options: nil)[0] as! MenuCell
         
-        let menuItem = MenuItem(name: "Jack and Coke", price: 4.00)
-        let menuItem2 = MenuItem(name: "Corona", price: 5.00)
-        let menuItem3 = MenuItem(name: "Martini", price: 10.00)
+        restrictionView = UIView(frame: view.bounds)
+        restrictionView.backgroundColor = UIColor(white: 0.0, alpha: 0.35)
         
-        theOrder = Order(orderItems: [menuItem, menuItem2, menuItem3])
-        menuItems = [menuItem, menuItem2, menuItem3]
+        self.addMenuItems()
     }
     
     //MARK: Private methods
     
     func updateOrderButton() {
-        var totalPrice: Float = 0.0
+        totalPrice = 0.0
+        orderButton.enabled = false
+        orderButton.alpha = 0.5
         var count = orderItems.count > 0 ? orderItems.count : 0
         for var i=0; i<count; i++ {
             let menuItem = orderItems[i] as! MenuItem
@@ -53,6 +55,8 @@ class MenuViewController: UIViewController {
         
         var orderString = "Order"
         if totalPrice > 0 {
+            orderButton.enabled = true
+            orderButton.alpha = 1.0
             orderString = String(format: "Order ($%.2f)", totalPrice)
         }
         
@@ -68,6 +72,63 @@ class MenuViewController: UIViewController {
         self.updateOrderButton()
         theTableView.reloadRowsAtIndexPaths([theTableView.indexPathForCell(cell)!], withRowAnimation: .None)
     }
+    
+    func addMenuItems() {
+        let menuItem = MenuItem(name: "Jack and Coke", price: 4.00)
+        let menuItem2 = MenuItem(name: "Corona", price: 5.00)
+        let menuItem3 = MenuItem(name: "Martini", price: 10.00)
+        
+        theOrder = Order(orderItems: [menuItem, menuItem2, menuItem3])
+        menuItems = [menuItem, menuItem2, menuItem3]
+    }
+    
+    func delay(delay:Double, closure:()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(), closure)
+    }
+    
+    //MARK: Actions
+    
+    @IBAction func orderButtonTapped(sender: AnyObject) {
+        
+        let confirmationView = NSBundle.mainBundle().loadNibNamed("ConfirmationView", owner: self, options: nil)[0] as! ConfirmationView
+        confirmationView.priceLabel.text = String(format: "$%.2f", totalPrice)
+        confirmationView.buttonClosure = {
+            
+            confirmationView.dismiss()
+            
+            let completeView = NSBundle.mainBundle().loadNibNamed("OrderCompleteView", owner: self, options: nil)[0] as! OrderCompleteView
+            completeView.showInView(self.view)
+            
+            self.delay(2.0) {
+                
+                UIView.animateWithDuration(0.15, animations: { () -> Void in
+                    
+                    completeView.alpha = 0.0
+                    self.restrictionView.alpha = 0.0
+                    
+                }, completion: { finished in
+                    completeView.removeFromSuperview()
+                    self.restrictionView.removeFromSuperview()
+                    
+                    self.addMenuItems()
+                    self.totalPrice = 0.0
+                    self.orderItems = NSMutableArray()
+                    self.theTableView.reloadData()
+                    self.updateOrderButton()
+                })
+            }
+        }
+        
+        restrictionView.alpha = 1.0
+        view.addSubview(restrictionView)
+        confirmationView.showInView(view)
+    }
+    
 }
 
 extension MenuViewController: UITableViewDataSource {
