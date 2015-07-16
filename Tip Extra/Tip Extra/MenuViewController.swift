@@ -36,7 +36,7 @@ class MenuViewController: TipExtraViewController {
         dummyCell = NSBundle.mainBundle().loadNibNamed("MenuCell", owner: self, options: nil)[0] as! MenuCell
         
         restrictionView = UIView(frame: view.bounds)
-        restrictionView.backgroundColor = UIColor(white: 0.0, alpha: 0.35)
+        restrictionView.backgroundColor = UIColor(white: 0.0, alpha: 0.75)
         
         self.addMenuItems()
     }
