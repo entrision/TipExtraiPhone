@@ -12,15 +12,25 @@ class ActivityButton: UIButton {
     
     var activityIndicator = UIActivityIndicatorView()
     var theTitle = ""
+    
+    var initialized = false
 
     override func awakeFromNib() {
         
         super.awakeFromNib()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
         
-        activityIndicator = UIActivityIndicatorView(frame: self.bounds)
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.White
-        self.addSubview(activityIndicator)
+        if !initialized {
+            activityIndicator = UIActivityIndicatorView(frame: self.bounds)
+            activityIndicator.hidesWhenStopped = true
+            activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.White
+            self.addSubview(activityIndicator)
+            
+            initialized = true
+        }
     }
     
     func startAnimating() {

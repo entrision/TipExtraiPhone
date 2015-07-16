@@ -12,16 +12,16 @@ class RegisterViewController: UIViewController {
     
     let cardInfoSegue = "cardInfoSegue"
 
-    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var emailTextField: TipExtraTextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var continueButton: ActivityButton!
+    @IBOutlet weak var confirmTextField: TipExtraTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        continueButton.layer.cornerRadius = 8.0
     }
 
     /*

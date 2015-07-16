@@ -20,8 +20,6 @@ class CardInfoViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        finishButton.layer.cornerRadius = 8.0
     }
 
     /*
