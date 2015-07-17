@@ -39,6 +39,7 @@
 		04E17A491B559F3400608F85 /* ActivityButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E17A481B559F3400608F85 /* ActivityButton.swift */; };
 		04F5AF1F1B592F320078D38C /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5AF1E1B592F320078D38C /* DatePickerView.swift */; };
 		04F5AF211B592F3A0078D38C /* DatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F5AF201B592F3A0078D38C /* DatePickerView.xib */; };
+		04F5AF241B593FC70078D38C /* MenuTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F5AF231B593FC70078D38C /* MenuTitleView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		04E17A481B559F3400608F85 /* ActivityButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityButton.swift; sourceTree = "<group>"; };
 		04F5AF1E1B592F320078D38C /* DatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		04F5AF201B592F3A0078D38C /* DatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerView.xib; sourceTree = "<group>"; };
+		04F5AF231B593FC70078D38C /* MenuTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTitleView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 				047B3BF01B56E37B0079735B /* OrderCompleteView.xib */,
 				04F5AF1E1B592F320078D38C /* DatePickerView.swift */,
 				04F5AF201B592F3A0078D38C /* DatePickerView.xib */,
+				04F5AF231B593FC70078D38C /* MenuTitleView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				0465290F1B558FC900FA126B /* LaunchScreen.xib in Resources */,
 				046C06DA1B55A3A00043EBFF /* MenuCell.xib in Resources */,
 				04399D3E1B58433B00AE8FE8 /* Raleway-SemiBold.ttf in Resources */,
+				04F5AF241B593FC70078D38C /* MenuTitleView.xib in Resources */,
 				047B3BE91B56DEC00079735B /* ConfirmationView.xib in Resources */,
 				047B3BF11B56E37B0079735B /* OrderCompleteView.xib in Resources */,
 				04399D381B58433B00AE8FE8 /* Raleway-ExtraBold.ttf in Resources */,

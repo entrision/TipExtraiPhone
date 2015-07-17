@@ -9,8 +9,8 @@
 import UIKit
 
 protocol MenuCellDelegate {
-    func menuCellDidTapPlusButton(cell: MenuCell)
-    func menuCellDidTapMinusButton(cell: MenuCell)
+    func menuCellDidSwipeRight(cell: MenuCell)
+    func menuCellDidSwipeLeft(cell: MenuCell)
 }
 
 class MenuCell: UITableViewCell {
@@ -19,33 +19,33 @@ class MenuCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var minusButton: UIButton!
-    @IBOutlet weak var plusButton: UIButton!
+    @IBOutlet weak var qtyLabel: UILabel!
     
     var menuItem: MenuItem = MenuItem()  {
         
         didSet {
             
-            self.priceLabel.text = String(format: "$%.2f", menuItem.price)
-            
-            let quantity = menuItem.quantity > 0 ? "(\(menuItem.quantity))" : ""
-            self.nameLabel.text = String(format: "%@ %@", menuItem.name, quantity)
-            
-            self.minusButton.hidden = !menuItem.ordered
-            self.plusButton.hidden = !menuItem.ordered
-            self.contentView.backgroundColor = menuItem.ordered ? UIColor(white: 0.925, alpha: 1.0) : UIColor.whiteColor()
+            nameLabel.text = menuItem.name
+            priceLabel.text = String(format: "$%.2f", menuItem.price)
+            qtyLabel.text = "\(menuItem.quantity)"
+            qtyLabel.alpha = menuItem.quantity > 0 ? 1.0 : 0.5
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+
+        qtyLabel.layer.borderColor = UIColor.darkGrayColor().CGColor
+        qtyLabel.layer.borderWidth = 0.5
         
-        minusButton.layer.cornerRadius = minusButton.frame.size.width / 2
-        plusButton.layer.cornerRadius = plusButton.frame.size.width / 2
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: Selector("leftSwipe:"))
+        leftSwipe.direction = .Left
+        self.addGestureRecognizer(leftSwipe)
         
-        minusButton.hidden = true
-        plusButton.hidden = true
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: Selector("rightSwipe:"))
+        rightSwipe.direction = .Right
+        self.addGestureRecognizer(rightSwipe)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -57,11 +57,20 @@ class MenuCell: UITableViewCell {
     
     //MARK: Actions
     
-    @IBAction func plusButtonTapped(sender: AnyObject) {
-        delegate.menuCellDidTapPlusButton(self)
+    func leftSwipe(gr: UISwipeGestureRecognizer) {
+        
+        if gr.state == UIGestureRecognizerState.Began {
+            
+        } else if gr.state == UIGestureRecognizerState.Ended {
+            delegate.menuCellDidSwipeLeft(self)
+        }
     }
     
-    @IBAction func minusButtonTapped(sender: AnyObject) {
-        delegate.menuCellDidTapMinusButton(self)
+    func rightSwipe(gr: UISwipeGestureRecognizer) {
+        if gr.state == UIGestureRecognizerState.Began {
+            
+        } else if gr.state == UIGestureRecognizerState.Ended {
+            delegate.menuCellDidSwipeRight(self)
+        }
     }
 }

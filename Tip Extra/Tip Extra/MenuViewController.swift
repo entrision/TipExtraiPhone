@@ -27,11 +27,13 @@ class MenuViewController: TipExtraViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        title = "Menu"
+        navigationItem.titleView = NSBundle.mainBundle().loadNibNamed("MenuTitleView", owner: self, options: nil)[0] as? UIView
         
         theTableView.registerNib(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: cellID)
         theTableView.separatorInset = UIEdgeInsetsZero;
         theTableView.layoutMargins = UIEdgeInsetsZero;
+        theTableView.separatorColor = UIColor.darkGrayColor()
+        theTableView.backgroundColor = UIColor(white: 0.1, alpha: 1.0)
         
         dummyCell = NSBundle.mainBundle().loadNibNamed("MenuCell", owner: self, options: nil)[0] as! MenuCell
         
@@ -152,6 +154,7 @@ extension MenuViewController: UITableViewDataSource {
         cell.selectionStyle = .None
         cell.separatorInset = UIEdgeInsetsZero;
         cell.layoutMargins = UIEdgeInsetsZero;
+        cell.contentView.backgroundColor = UIColor(white: 0.1, alpha: 1.0)
         
         return cell
     }
@@ -163,18 +166,7 @@ extension MenuViewController: UITableViewDelegate {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        let menuItem = menuItems[indexPath.row] as! MenuItem
         
-        if !menuItem.ordered {
-            menuItem.ordered = true
-            menuItem.quantity = 1
-            orderItems.addObject(menuItem)
-            
-            self.updateOrderButton()
-            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
-        } else {
-            self.increaseQtyForCell(tableView.cellForRowAtIndexPath(indexPath) as! MenuCell)
-        }
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -184,11 +176,23 @@ extension MenuViewController: UITableViewDelegate {
 
 extension MenuViewController : MenuCellDelegate {
     
-    func menuCellDidTapPlusButton(cell: MenuCell) {
-        self.increaseQtyForCell(cell)
+    func menuCellDidSwipeLeft(cell: MenuCell) {
+        
+        let menuItem = cell.menuItem
+        
+        if !menuItem.ordered {
+            menuItem.ordered = true
+            menuItem.quantity = 1
+            orderItems.addObject(menuItem)
+            
+            self.updateOrderButton()
+            theTableView.reloadRowsAtIndexPaths([theTableView.indexPathForCell(cell)!], withRowAnimation: .None)
+        } else {
+            self.increaseQtyForCell(cell)
+        }
     }
     
-    func menuCellDidTapMinusButton(cell: MenuCell) {
+    func menuCellDidSwipeRight(cell: MenuCell) {
         
         if cell.menuItem.quantity > 0 {
             
