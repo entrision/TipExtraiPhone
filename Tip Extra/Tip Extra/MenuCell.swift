@@ -17,6 +17,7 @@ class MenuCell: UITableViewCell {
     
     var delegate: MenuCellDelegate! = nil
 
+    @IBOutlet weak var theImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var qtyLabel: UILabel!
@@ -35,6 +36,8 @@ class MenuCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        theImageView.layer.cornerRadius = theImageView.frame.size.width / 2
 
         qtyLabel.layer.borderColor = UIColor.darkGrayColor().CGColor
         qtyLabel.layer.borderWidth = 0.5
