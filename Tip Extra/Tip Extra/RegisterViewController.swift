@@ -12,7 +12,8 @@ class RegisterViewController: UIViewController {
     
     let cardInfoSegue = "cardInfoSegue"
 
-    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var emailTextField: TipExtraTextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var continueButton: ActivityButton!
@@ -22,6 +23,12 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        confirmTextField.delegate = self
     }
 
     /*
@@ -38,5 +45,13 @@ class RegisterViewController: UIViewController {
     
     @IBAction func continueButtonTapped(sender: AnyObject) {
         self.performSegueWithIdentifier(cardInfoSegue, sender: self)
+    }
+}
+
+extension RegisterViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return true
     }
 }

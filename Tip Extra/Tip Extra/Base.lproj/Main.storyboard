@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9Yp-Lw-da6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OLJ-Hh-0s6">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -44,37 +44,45 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="YOUR NAME" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3HZ-cX-JJK" customClass="TipExtraTextField" customModule="Tip_Extra" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="FIRST NAME" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3HZ-cX-JJK" customClass="TipExtraTextField" customModule="Tip_Extra" customModuleProvider="target">
                                 <rect key="frame" x="38" y="127" width="524" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="8Lh-m1-GFF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words" spellCheckingType="no"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="LAST NAME" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TPs-TK-yKv" customClass="TipExtraTextField" customModule="Tip_Extra" customModuleProvider="target">
+                                <rect key="frame" x="38" y="187" width="524" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="mHw-Rh-gzW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="EMAIL ADDRESS" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b41-3U-OCu" customClass="TipExtraTextField" customModule="Tip_Extra" customModuleProvider="target">
-                                <rect key="frame" x="38" y="187" width="524" height="30"/>
+                                <rect key="frame" x="38" y="247" width="524" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Tcf-1Z-kGd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="done"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="PASSWORD" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jJP-Sl-bk7" customClass="TipExtraTextField" customModule="Tip_Extra" customModuleProvider="target">
-                                <rect key="frame" x="38" y="247" width="524" height="30"/>
+                                <rect key="frame" x="38" y="307" width="524" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="OOn-Tf-TJa"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CONFIRM PASSWORD" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Rx-T9-hQV" customClass="TipExtraTextField" customModule="Tip_Extra" customModuleProvider="target">
-                                <rect key="frame" x="38" y="307" width="524" height="30"/>
+                                <rect key="frame" x="38" y="367" width="524" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="uSq-DK-GH4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already registered?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UX2-ln-Xuv">
                                 <rect key="frame" x="217" y="539" width="167" height="21"/>
@@ -107,7 +115,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oX8-AZ-AVS" customClass="ActivityButton" customModule="Tip_Extra" customModuleProvider="target">
-                                <rect key="frame" x="83" y="382" width="434" height="46"/>
+                                <rect key="frame" x="83" y="459" width="434" height="46"/>
                                 <color key="backgroundColor" red="0.0" green="0.45134992899999998" blue="0.67508680560000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="gk0-4O-mJJ"/>
@@ -125,6 +133,8 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="TPs-TK-yKv" secondAttribute="trailing" constant="38" id="2bb-03-sxu"/>
+                            <constraint firstItem="TPs-TK-yKv" firstAttribute="top" secondItem="3HZ-cX-JJK" secondAttribute="bottom" constant="30" id="5E9-ll-N0U"/>
                             <constraint firstItem="hS0-GP-cnf" firstAttribute="top" secondItem="5wW-7P-nhK" secondAttribute="bottom" constant="15" id="6Wt-oN-UYf"/>
                             <constraint firstItem="9Rx-T9-hQV" firstAttribute="leading" secondItem="FLo-AM-c44" secondAttribute="leading" constant="38" id="8Ly-VH-DPQ"/>
                             <constraint firstItem="9Rx-T9-hQV" firstAttribute="top" secondItem="jJP-Sl-bk7" secondAttribute="bottom" constant="30" id="9SF-yQ-YPT"/>
@@ -139,14 +149,15 @@
                             <constraint firstItem="3HZ-cX-JJK" firstAttribute="top" secondItem="e2P-KN-LwH" secondAttribute="bottom" constant="40" id="Z4B-Lh-UHQ"/>
                             <constraint firstAttribute="trailing" secondItem="jJP-Sl-bk7" secondAttribute="trailing" constant="38" id="b3v-WC-Pex"/>
                             <constraint firstItem="hS0-GP-cnf" firstAttribute="top" secondItem="ejY-fY-LaZ" secondAttribute="bottom" constant="11" id="c3A-iU-QC2"/>
+                            <constraint firstItem="b41-3U-OCu" firstAttribute="top" secondItem="TPs-TK-yKv" secondAttribute="bottom" constant="30" id="eMW-Js-Y5U"/>
                             <constraint firstAttribute="trailing" secondItem="3HZ-cX-JJK" secondAttribute="trailing" constant="38" id="g6S-Tb-p7V"/>
                             <constraint firstAttribute="centerX" secondItem="5wW-7P-nhK" secondAttribute="centerX" id="gl4-Pm-xtZ"/>
                             <constraint firstItem="oX8-AZ-AVS" firstAttribute="leading" secondItem="FLo-AM-c44" secondAttribute="leading" constant="83" id="m80-Bt-btB"/>
+                            <constraint firstItem="TPs-TK-yKv" firstAttribute="leading" secondItem="FLo-AM-c44" secondAttribute="leading" constant="38" id="mGM-TN-RD9"/>
                             <constraint firstAttribute="trailing" secondItem="9Rx-T9-hQV" secondAttribute="trailing" constant="38" id="oo6-MY-0qa"/>
                             <constraint firstItem="3HZ-cX-JJK" firstAttribute="leading" secondItem="FLo-AM-c44" secondAttribute="leading" constant="38" id="pAk-O6-5Wu"/>
-                            <constraint firstItem="oX8-AZ-AVS" firstAttribute="top" secondItem="9Rx-T9-hQV" secondAttribute="bottom" constant="45" id="q1G-WL-npo"/>
+                            <constraint firstItem="oX8-AZ-AVS" firstAttribute="top" secondItem="9Rx-T9-hQV" secondAttribute="bottom" constant="62" id="q1G-WL-npo"/>
                             <constraint firstAttribute="centerX" secondItem="e2P-KN-LwH" secondAttribute="centerX" id="qzS-XY-wZq"/>
-                            <constraint firstItem="b41-3U-OCu" firstAttribute="top" secondItem="3HZ-cX-JJK" secondAttribute="bottom" constant="30" id="sm4-9g-feX"/>
                             <constraint firstItem="jJP-Sl-bk7" firstAttribute="top" secondItem="b41-3U-OCu" secondAttribute="bottom" constant="30" id="yyy-LR-s5O"/>
                         </constraints>
                     </view>
@@ -155,8 +166,9 @@
                         <outlet property="confirmTextField" destination="9Rx-T9-hQV" id="iqJ-c4-RTk"/>
                         <outlet property="continueButton" destination="oX8-AZ-AVS" id="1x8-ar-5kR"/>
                         <outlet property="emailTextField" destination="b41-3U-OCu" id="ECZ-Qw-v7X"/>
-                        <outlet property="nameTextField" destination="3HZ-cX-JJK" id="qhe-ha-fc5"/>
-                        <outlet property="passwordTextField" destination="b41-3U-OCu" id="N8o-Ih-EXz"/>
+                        <outlet property="firstNameTextField" destination="3HZ-cX-JJK" id="1gO-Aw-Eyi"/>
+                        <outlet property="lastNameTextField" destination="TPs-TK-yKv" id="Pgt-o2-UiB"/>
+                        <outlet property="passwordTextField" destination="jJP-Sl-bk7" id="fsB-7N-Uqs"/>
                         <segue destination="u8O-PV-oai" kind="show" identifier="cardInfoSegue" id="tnu-CK-AEh"/>
                     </connections>
                 </viewController>
