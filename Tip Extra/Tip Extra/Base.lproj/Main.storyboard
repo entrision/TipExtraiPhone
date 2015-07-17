@@ -353,21 +353,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="NAME ON CARD" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ipq-wX-4Nt" customClass="TipExtraTextField" customModule="Tip_Extra" customModuleProvider="target">
-                                <rect key="frame" x="38" y="127" width="524" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="lii-sr-IqX"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CODE" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zHf-Tu-xp6" customClass="TipExtraTextField" customModule="Tip_Extra" customModuleProvider="target">
                                 <rect key="frame" x="442" y="247" width="120" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="TZR-8Q-IAu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CARD NUMBER" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ffj-4k-kvR" customClass="TipExtraTextField" customModule="Tip_Extra" customModuleProvider="target">
                                 <rect key="frame" x="38" y="187" width="524" height="30"/>
@@ -375,7 +367,7 @@
                                     <constraint firstAttribute="height" constant="30" id="VAA-a9-L6Y"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already registered?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFi-ah-xrD">
                                 <rect key="frame" x="217" y="539" width="167" height="21"/>
@@ -431,6 +423,14 @@
                                     <action selector="loginButtonTapped:" destination="K38-EL-Zka" eventType="touchUpInside" id="tDd-uY-RKX"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="NAME ON CARD" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ipq-wX-4Nt" customClass="TipExtraTextField" customModule="Tip_Extra" customModuleProvider="target">
+                                <rect key="frame" x="38" y="127" width="524" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="lii-sr-IqX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

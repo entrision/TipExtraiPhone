@@ -37,6 +37,8 @@
 		04E17A441B55955F00608F85 /* CardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E17A431B55955F00608F85 /* CardInfoViewController.swift */; };
 		04E17A461B559EB200608F85 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E17A451B559EB200608F85 /* LoginViewController.swift */; };
 		04E17A491B559F3400608F85 /* ActivityButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E17A481B559F3400608F85 /* ActivityButton.swift */; };
+		04F5AF1F1B592F320078D38C /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5AF1E1B592F320078D38C /* DatePickerView.swift */; };
+		04F5AF211B592F3A0078D38C /* DatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F5AF201B592F3A0078D38C /* DatePickerView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +86,8 @@
 		04E17A431B55955F00608F85 /* CardInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardInfoViewController.swift; sourceTree = "<group>"; };
 		04E17A451B559EB200608F85 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		04E17A481B559F3400608F85 /* ActivityButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityButton.swift; sourceTree = "<group>"; };
+		04F5AF1E1B592F320078D38C /* DatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
+		04F5AF201B592F3A0078D38C /* DatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +198,8 @@
 				047B3BE81B56DEC00079735B /* ConfirmationView.xib */,
 				047B3BEE1B56E36F0079735B /* OrderCompleteView.swift */,
 				047B3BF01B56E37B0079735B /* OrderCompleteView.xib */,
+				04F5AF1E1B592F320078D38C /* DatePickerView.swift */,
+				04F5AF201B592F3A0078D38C /* DatePickerView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -299,6 +305,7 @@
 				04399D3A1B58433B00AE8FE8 /* Raleway-Heavy.ttf in Resources */,
 				04399D3F1B58433B00AE8FE8 /* Raleway-Thin.ttf in Resources */,
 				04399D3C1B58433B00AE8FE8 /* Raleway-Medium.ttf in Resources */,
+				04F5AF211B592F3A0078D38C /* DatePickerView.xib in Resources */,
 				04399D361B58433B00AE8FE8 /* OFL.txt in Resources */,
 				04399D3D1B58433B00AE8FE8 /* Raleway-Regular.ttf in Resources */,
 				0465290A1B558FC900FA126B /* Main.storyboard in Resources */,
@@ -333,6 +340,7 @@
 				04E17A461B559EB200608F85 /* LoginViewController.swift in Sources */,
 				047B3BEF1B56E36F0079735B /* OrderCompleteView.swift in Sources */,
 				04399D411B58497C00AE8FE8 /* TipExtraTextField.swift in Sources */,
+				04F5AF1F1B592F320078D38C /* DatePickerView.swift in Sources */,
 				046529071B558FC900FA126B /* MenuViewController.swift in Sources */,
 				04E17A441B55955F00608F85 /* CardInfoViewController.swift in Sources */,
 				047B3BE11B56A3580079735B /* Order.swift in Sources */,
