@@ -11,17 +11,16 @@ import UIKit
 class MenuViewController: TipExtraViewController {
     
     let cellID = "MenuCellID"
+    let kOrderConfirmationSegue = "orderConfirmationSegue"
     
     var dummyCell = MenuCell()
 
     @IBOutlet weak var theTableView: UITableView!
-    @IBOutlet weak var orderButton: UIButton!
+    @IBOutlet weak var placeOrderView: PlaceOrderView!
     
     var theOrder = Order.new()
     var menuItems = NSArray()
-    var orderItems = NSMutableArray()
-    var restrictionView = UIView()
-    var totalPrice: Float = 0.0
+    var selectedOrderItems = NSMutableArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,50 +28,52 @@ class MenuViewController: TipExtraViewController {
         
         navigationItem.titleView = NSBundle.mainBundle().loadNibNamed("MenuTitleView", owner: self, options: nil)[0] as? UIView
         
+        let optionsBarButton = UIBarButtonItem(title: ":", style: .Plain, target: self, action: Selector("optionsBarButtonTapped"))
+        optionsBarButton.tintColor = UIColor.whiteColor()
+        navigationItem.rightBarButtonItem = optionsBarButton
+        
         theTableView.registerNib(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: cellID)
         theTableView.separatorInset = UIEdgeInsetsZero;
         theTableView.layoutMargins = UIEdgeInsetsZero;
         theTableView.separatorColor = UIColor.darkGrayColor()
-        theTableView.backgroundColor = UIColor(white: 0.1, alpha: 1.0)
+        theTableView.backgroundColor = UIColor(white: 0.05, alpha: 1.0)
         
         dummyCell = NSBundle.mainBundle().loadNibNamed("MenuCell", owner: self, options: nil)[0] as! MenuCell
         
-        restrictionView = UIView(frame: view.bounds)
-        restrictionView.backgroundColor = UIColor(white: 0.0, alpha: 0.75)
+        let tapGr = UITapGestureRecognizer(target: self, action: "placeOrderTapGesture:")
+        tapGr.numberOfTapsRequired = 1
+        placeOrderView.addGestureRecognizer(tapGr)
         
         self.addMenuItems()
     }
     
-    //MARK: Private methods
-    
-    func updateOrderButton() {
-        totalPrice = 0.0
-        orderButton.enabled = false
-        orderButton.alpha = 0.5
-        var count = orderItems.count > 0 ? orderItems.count : 0
-        for var i=0; i<count; i++ {
-            let menuItem = orderItems[i] as! MenuItem
-            totalPrice += menuItem.price * Float(menuItem.quantity)
-        }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        var orderString = "Order"
-        if totalPrice > 0 {
-            orderButton.enabled = true
-            orderButton.alpha = 1.0
-            orderString = String(format: "Order ($%.2f)", totalPrice)
+        if segue.identifier == kOrderConfirmationSegue {
+            
+            let navController = segue.destinationViewController as! UINavigationController
+            let vc = navController.viewControllers[0] as! OrderConfirmationViewController
+            vc.theOrder = theOrder
         }
-        
-        orderButton.setTitle(orderString, forState: .Normal)
     }
     
-    func increaseQtyForCell(cell: MenuCell) {
-        cell.menuItem.quantity++
+    //MARK: Private methods
+    
+    func updateOrder() {
         
-        let index = orderItems.indexOfObject(cell.menuItem)
-        orderItems.replaceObjectAtIndex(index, withObject: cell.menuItem)
+        theOrder.orderItems = selectedOrderItems
         
-        self.updateOrderButton()
-        theTableView.reloadRowsAtIndexPaths([theTableView.indexPathForCell(cell)!], withRowAnimation: .None)
+        var orderString = "$0.00"
+        if theOrder.total > 0 {
+            placeOrderView.alpha = 1.0
+            placeOrderView.userInteractionEnabled = true
+            orderString = String(format: "$%.2f", theOrder.total)
+        } else {
+            placeOrderView.alpha = 0.5
+            placeOrderView.userInteractionEnabled = false
+        }
+        
+        placeOrderView.priceLabel.text = orderString
     }
     
     func addMenuItems() {
@@ -80,7 +81,6 @@ class MenuViewController: TipExtraViewController {
         let menuItem2 = MenuItem(name: "Corona", price: 5.00)
         let menuItem3 = MenuItem(name: "Martini", price: 10.00)
         
-        theOrder = Order(orderItems: [menuItem, menuItem2, menuItem3])
         menuItems = [menuItem, menuItem2, menuItem3]
     }
     
@@ -95,42 +95,14 @@ class MenuViewController: TipExtraViewController {
     
     //MARK: Actions
     
-    @IBAction func orderButtonTapped(sender: AnyObject) {
+    func placeOrderTapGesture(gr: UIGestureRecognizer) {
         
-        let confirmationView = NSBundle.mainBundle().loadNibNamed("ConfirmationView", owner: self, options: nil)[0] as! ConfirmationView
-        confirmationView.priceLabel.text = String(format: "$%.2f", totalPrice)
-        confirmationView.buttonClosure = {
-            
-            confirmationView.dismiss()
-            
-            let completeView = NSBundle.mainBundle().loadNibNamed("OrderCompleteView", owner: self, options: nil)[0] as! OrderCompleteView
-            completeView.showInView(self.view)
-            
-            self.delay(2.0) {
-                
-                UIView.animateWithDuration(0.15, animations: { () -> Void in
-                    
-                    completeView.alpha = 0.0
-                    self.restrictionView.alpha = 0.0
-                    
-                }, completion: { finished in
-                    completeView.removeFromSuperview()
-                    self.restrictionView.removeFromSuperview()
-                    
-                    self.addMenuItems()
-                    self.totalPrice = 0.0
-                    self.orderItems = NSMutableArray()
-                    self.theTableView.reloadData()
-                    self.updateOrderButton()
-                })
-            }
-        }
-        
-        restrictionView.alpha = 1.0
-        view.addSubview(restrictionView)
-        confirmationView.showInView(view)
+        performSegueWithIdentifier(kOrderConfirmationSegue, sender: self)
     }
     
+    func optionsBarButtonTapped() {
+        
+    }
 }
 
 extension MenuViewController: UITableViewDataSource {
@@ -154,7 +126,7 @@ extension MenuViewController: UITableViewDataSource {
         cell.selectionStyle = .None
         cell.separatorInset = UIEdgeInsetsZero;
         cell.layoutMargins = UIEdgeInsetsZero;
-        cell.contentView.backgroundColor = UIColor(white: 0.1, alpha: 1.0)
+        cell.contentView.backgroundColor = UIColor(white: 0.05, alpha: 1.0)
         
         return cell
     }
@@ -183,12 +155,18 @@ extension MenuViewController : MenuCellDelegate {
         if !menuItem.ordered {
             menuItem.ordered = true
             menuItem.quantity = 1
-            orderItems.addObject(menuItem)
+            selectedOrderItems.addObject(menuItem)
             
-            self.updateOrderButton()
+            self.updateOrder()
             theTableView.reloadRowsAtIndexPaths([theTableView.indexPathForCell(cell)!], withRowAnimation: .None)
         } else {
-            self.increaseQtyForCell(cell)
+            cell.menuItem.quantity++
+            
+            let index = selectedOrderItems.indexOfObject(cell.menuItem)
+            selectedOrderItems.replaceObjectAtIndex(index, withObject: cell.menuItem)
+            
+            self.updateOrder()
+            theTableView.reloadRowsAtIndexPaths([theTableView.indexPathForCell(cell)!], withRowAnimation: .None)
         }
     }
     
@@ -200,13 +178,13 @@ extension MenuViewController : MenuCellDelegate {
             
             if cell.menuItem.quantity == 0 {
                 cell.menuItem.ordered = false
-                orderItems.removeObject(cell.menuItem)
+                selectedOrderItems.removeObject(cell.menuItem)
             } else {
-                let index = orderItems.indexOfObject(cell.menuItem)
-                orderItems.replaceObjectAtIndex(index, withObject: cell.menuItem)
+                let index = selectedOrderItems.indexOfObject(cell.menuItem)
+                selectedOrderItems.replaceObjectAtIndex(index, withObject: cell.menuItem)
             }
             
-            self.updateOrderButton()
+            self.updateOrder()
             theTableView.reloadRowsAtIndexPaths([theTableView.indexPathForCell(cell)!], withRowAnimation: .None)
         }
     }

@@ -32,6 +32,8 @@
 		047B3BE91B56DEC00079735B /* ConfirmationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047B3BE81B56DEC00079735B /* ConfirmationView.xib */; };
 		047B3BEF1B56E36F0079735B /* OrderCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B3BEE1B56E36F0079735B /* OrderCompleteView.swift */; };
 		047B3BF11B56E37B0079735B /* OrderCompleteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047B3BF01B56E37B0079735B /* OrderCompleteView.xib */; };
+		04C25CEC1B5E864D001F351C /* PlaceOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C25CEB1B5E864D001F351C /* PlaceOrderView.swift */; };
+		04C25CEF1B5E930A001F351C /* OrderConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C25CEE1B5E930A001F351C /* OrderConfirmationViewController.swift */; };
 		04E17A401B55934F00608F85 /* TipExtraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E17A3F1B55934F00608F85 /* TipExtraViewController.swift */; };
 		04E17A421B55936500608F85 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E17A411B55936500608F85 /* RegisterViewController.swift */; };
 		04E17A441B55955F00608F85 /* CardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E17A431B55955F00608F85 /* CardInfoViewController.swift */; };
@@ -82,6 +84,8 @@
 		047B3BE81B56DEC00079735B /* ConfirmationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfirmationView.xib; sourceTree = "<group>"; };
 		047B3BEE1B56E36F0079735B /* OrderCompleteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCompleteView.swift; sourceTree = "<group>"; };
 		047B3BF01B56E37B0079735B /* OrderCompleteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCompleteView.xib; sourceTree = "<group>"; };
+		04C25CEB1B5E864D001F351C /* PlaceOrderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceOrderView.swift; sourceTree = "<group>"; };
+		04C25CEE1B5E930A001F351C /* OrderConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderConfirmationViewController.swift; sourceTree = "<group>"; };
 		04E17A3F1B55934F00608F85 /* TipExtraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipExtraViewController.swift; sourceTree = "<group>"; };
 		04E17A411B55936500608F85 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		04E17A431B55955F00608F85 /* CardInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardInfoViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 				04E17A471B559EC000608F85 /* Registration */,
 				04E17A451B559EB200608F85 /* LoginViewController.swift */,
 				046529061B558FC900FA126B /* MenuViewController.swift */,
+				04C25CEE1B5E930A001F351C /* OrderConfirmationViewController.swift */,
 				047B3BDF1B56A1F30079735B /* Model */,
 				046C06D61B55A3870043EBFF /* Views */,
 				046529081B558FC900FA126B /* Main.storyboard */,
@@ -194,8 +199,7 @@
 			children = (
 				04E17A481B559F3400608F85 /* ActivityButton.swift */,
 				04399D401B58497C00AE8FE8 /* TipExtraTextField.swift */,
-				046C06D71B55A3A00043EBFF /* MenuCell.swift */,
-				046C06D81B55A3A00043EBFF /* MenuCell.xib */,
+				04C25CED1B5E866F001F351C /* Menu */,
 				047B3BE61B56DDC50079735B /* ConfirmationView.swift */,
 				047B3BE81B56DEC00079735B /* ConfirmationView.xib */,
 				047B3BEE1B56E36F0079735B /* OrderCompleteView.swift */,
@@ -214,6 +218,16 @@
 				047B3BE21B56A3600079735B /* MenuItem.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		04C25CED1B5E866F001F351C /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				046C06D71B55A3A00043EBFF /* MenuCell.swift */,
+				046C06D81B55A3A00043EBFF /* MenuCell.xib */,
+				04C25CEB1B5E864D001F351C /* PlaceOrderView.swift */,
+			);
+			name = Menu;
 			sourceTree = "<group>";
 		};
 		04E17A471B559EC000608F85 /* Registration */ = {
@@ -344,10 +358,12 @@
 				04E17A461B559EB200608F85 /* LoginViewController.swift in Sources */,
 				047B3BEF1B56E36F0079735B /* OrderCompleteView.swift in Sources */,
 				04399D411B58497C00AE8FE8 /* TipExtraTextField.swift in Sources */,
+				04C25CEF1B5E930A001F351C /* OrderConfirmationViewController.swift in Sources */,
 				04F5AF1F1B592F320078D38C /* DatePickerView.swift in Sources */,
 				046529071B558FC900FA126B /* MenuViewController.swift in Sources */,
 				04E17A441B55955F00608F85 /* CardInfoViewController.swift in Sources */,
 				047B3BE11B56A3580079735B /* Order.swift in Sources */,
+				04C25CEC1B5E864D001F351C /* PlaceOrderView.swift in Sources */,
 				04E17A491B559F3400608F85 /* ActivityButton.swift in Sources */,
 				046529051B558FC900FA126B /* AppDelegate.swift in Sources */,
 				04E17A401B55934F00608F85 /* TipExtraViewController.swift in Sources */,
