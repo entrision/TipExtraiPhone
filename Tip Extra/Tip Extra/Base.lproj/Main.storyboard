@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OLJ-Hh-0s6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9Yp-Lw-da6">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -16,6 +16,7 @@
             <string>Raleway-Bold</string>
         </mutableArray>
         <mutableArray key="Raleway-Light.ttf">
+            <string>Raleway-Light</string>
             <string>Raleway-Light</string>
             <string>Raleway-Light</string>
             <string>Raleway-Light</string>
@@ -348,7 +349,16 @@
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="tWV-Vc-m47" secondAttribute="bottom" constant="60" id="zTz-bP-ZJI"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="uSP-Ji-2g6"/>
+                    <navigationItem key="navigationItem" id="uSP-Ji-2g6">
+                        <barButtonItem key="rightBarButtonItem" title="..." style="done" id="6Nc-95-xMG">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="qhY-pV-drT" kind="popoverPresentation" identifier="PopoverSegue" popoverAnchorBarButtonItem="6Nc-95-xMG" id="a5a-3g-JfH">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="placeOrderView" destination="8Nw-xQ-6M2" id="Ed9-DE-Y4O"/>
                         <outlet property="theTableView" destination="tWV-Vc-m47" id="ln1-JR-3AV"/>
@@ -357,7 +367,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1279" y="440"/>
+            <point key="canvasLocation" x="1330" y="440"/>
         </scene>
         <!--Order Confirmation View Controller-->
         <scene sceneID="jec-r9-Ek6">
@@ -704,6 +714,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4iM-N1-hrj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="564" y="440"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="KfP-8V-YAT">
+            <objects>
+                <viewController storyboardIdentifier="LogoutPopover" id="qhY-pV-drT" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mZb-9E-gU0"/>
+                        <viewControllerLayoutGuide type="bottom" id="nZp-xS-l7J"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="J8q-Mq-H2g">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="75"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAE-jN-AWo" customClass="ActivityButton" customModule="Tip_Extra" customModuleProvider="target">
+                                <rect key="frame" x="16" y="20" width="168" height="34"/>
+                                <color key="backgroundColor" red="0.0" green="0.45134992899999998" blue="0.67508680560000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Raleway-Light" family="Raleway" pointSize="18"/>
+                                <state key="normal" title="LOGOUT">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="continueButtonTapped:" destination="Ge5-Bb-s6h" eventType="touchUpInside" id="iwa-Tu-gnj"/>
+                                    <action selector="finishButtonTapped:" destination="u8O-PV-oai" eventType="touchUpInside" id="QCZ-QC-pdE"/>
+                                    <action selector="loginButtonTapped:" destination="K38-EL-Zka" eventType="touchUpInside" id="XZm-b9-v1U"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="uAE-jN-AWo" secondAttribute="trailing" constant="16" id="erL-aK-wyJ"/>
+                            <constraint firstItem="uAE-jN-AWo" firstAttribute="leading" secondItem="J8q-Mq-H2g" secondAttribute="leading" constant="16" id="hCZ-N3-dKD"/>
+                            <constraint firstAttribute="centerY" secondItem="uAE-jN-AWo" secondAttribute="centerY" constant="1" id="kge-S8-g5e"/>
+                            <constraint firstAttribute="centerX" secondItem="uAE-jN-AWo" secondAttribute="centerX" id="zgt-0G-cIc"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="200" height="75"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EvK-Bh-6XV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1571" y="-21.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wZz-py-QeA">

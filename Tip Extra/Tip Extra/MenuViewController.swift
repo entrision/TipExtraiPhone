@@ -28,10 +28,6 @@ class MenuViewController: TipExtraViewController {
         
         navigationItem.titleView = NSBundle.mainBundle().loadNibNamed("MenuTitleView", owner: self, options: nil)[0] as? UIView
         
-        let optionsBarButton = UIBarButtonItem(title: ":", style: .Plain, target: self, action: Selector("optionsBarButtonTapped"))
-        optionsBarButton.tintColor = UIColor.whiteColor()
-        navigationItem.rightBarButtonItem = optionsBarButton
-        
         theTableView.registerNib(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: cellID)
         theTableView.separatorInset = UIEdgeInsetsZero;
         theTableView.layoutMargins = UIEdgeInsetsZero;
@@ -54,6 +50,11 @@ class MenuViewController: TipExtraViewController {
             let navController = segue.destinationViewController as! UINavigationController
             let vc = navController.viewControllers[0] as! OrderConfirmationViewController
             vc.theOrder = theOrder
+        } else if segue.identifier == "PopoverSegue" {
+            if let controller = segue.destinationViewController as? UIViewController {
+                controller.popoverPresentationController!.delegate = self
+                controller.preferredContentSize = CGSize(width: 180, height: 75)
+            }
         }
     }
     
@@ -99,12 +100,7 @@ class MenuViewController: TipExtraViewController {
     //MARK: Actions
     
     func placeOrderTapGesture(gr: UIGestureRecognizer) {
-        
         performSegueWithIdentifier(kOrderConfirmationSegue, sender: self)
-    }
-    
-    func optionsBarButtonTapped() {
-        
     }
 }
 
@@ -190,5 +186,12 @@ extension MenuViewController : MenuCellDelegate {
             self.updateOrder()
             theTableView.reloadRowsAtIndexPaths([theTableView.indexPathForCell(cell)!], withRowAnimation: .None)
         }
+    }
+}
+
+extension MenuViewController: UIPopoverPresentationControllerDelegate {
+
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
     }
 }
