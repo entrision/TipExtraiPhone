@@ -12,12 +12,17 @@ class RegisterViewController: UIViewController {
     
     let cardInfoSegue = "cardInfoSegue"
 
-    @IBOutlet weak var firstNameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var firstNameTextField: TipExtraTextField!
+    @IBOutlet weak var lastNameTextField: TipExtraTextField!
     @IBOutlet weak var emailTextField: TipExtraTextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var passwordTextField: TipExtraTextField!
     @IBOutlet weak var continueButton: ActivityButton!
     @IBOutlet weak var confirmTextField: TipExtraTextField!
+    @IBOutlet weak var firstNameErrorLabel: UILabel!
+    @IBOutlet weak var lastNameErrorLabel: UILabel!
+    @IBOutlet weak var emailErrorLabel: UILabel!
+    @IBOutlet weak var passwordErrorLabel: UILabel!
+    @IBOutlet weak var confirmErrorLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +49,67 @@ class RegisterViewController: UIViewController {
     //MARK: Actions
     
     @IBAction func continueButtonTapped(sender: AnyObject) {
+        
+        if !isValidEntry() {
+            return
+        }
+        
         self.performSegueWithIdentifier(cardInfoSegue, sender: self)
+    }
+    
+    //MARK: Misc methods
+    
+    func isValidEntry() -> Bool {
+        
+        var isValid = true
+        
+        if firstNameTextField.text == "" {
+            isValid = false
+            firstNameErrorLabel.hidden = isValid
+            firstNameErrorLabel.text = "Please enter your first name"
+        }
+        if lastNameTextField.text == "" {
+            isValid = false
+            lastNameErrorLabel.hidden = isValid
+            lastNameErrorLabel.text = "Please enter your last name"
+        }
+        if emailTextField.text == "" {
+            isValid = false
+            emailErrorLabel.hidden = isValid
+            emailErrorLabel.text = "Please enter your email address"
+        }
+        if passwordTextField.text == "" {
+            isValid = false
+            passwordErrorLabel.hidden = isValid
+            passwordErrorLabel.text = "Please enter a password"
+        }
+        if confirmTextField.text == "" {
+            isValid = false
+            confirmErrorLabel.hidden = isValid
+            confirmErrorLabel.text = "Please enter your password again"
+        }
+        
+        
+        return isValid
     }
 }
 
 extension RegisterViewController: UITextFieldDelegate {
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        
+        if textField == firstNameTextField {
+            firstNameErrorLabel.hidden = textField.text != ""
+        } else if textField == lastNameTextField {
+            lastNameErrorLabel.hidden = textField.text != ""
+        } else if textField == emailTextField {
+            emailErrorLabel.hidden = textField.text != ""
+        } else if textField == passwordTextField {
+            passwordErrorLabel.hidden = textField.text != ""
+        } else if textField == confirmTextField {
+            confirmErrorLabel.hidden = textField.text != ""
+        }
+    }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         view.endEditing(true)
