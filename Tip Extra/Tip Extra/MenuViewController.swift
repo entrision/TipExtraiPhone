@@ -82,6 +82,9 @@ class MenuViewController: TipExtraViewController {
         let menuItem3 = MenuItem(name: "Martini", price: 10.00)
         
         menuItems = [menuItem, menuItem2, menuItem3]
+        selectedOrderItems = NSMutableArray()
+        theTableView.reloadData()
+        updateOrder()
     }
     
     func delay(delay:Double, closure:()->()) {

@@ -15,6 +15,7 @@ class OrderConfirmationViewController: UIViewController {
     var theOrder: Order?
     
     var dummyCell = MenuCell()
+    var orderTotalView = OrderTotalView()
     
     @IBOutlet weak var theTableView: UITableView!
 
@@ -23,13 +24,29 @@ class OrderConfirmationViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        title = "YOUR ORDER"
+        title = "ORDER CONFIRMATION"
         
         theTableView.registerNib(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: cellID)
         theTableView.separatorStyle = .None
         theTableView.backgroundColor = UIColor(white: 0.05, alpha: 1.0)
         
+        orderTotalView = NSBundle.mainBundle().loadNibNamed("OrderTotalView", owner: self, options: nil)[0] as! OrderTotalView
+        orderTotalView.frame = CGRectMake(0, 0, orderTotalView.frame.size.width, orderTotalView.frame.size.height)
+        orderTotalView.totalLabel.text = String(format: "$%.2f", theOrder!.total)
+        orderTotalView.dismissButton.addTarget(self, action: Selector("dismissButtonTapped"), forControlEvents: UIControlEvents.TouchUpInside)
+        theTableView.tableFooterView = orderTotalView
+        
         dummyCell = NSBundle.mainBundle().loadNibNamed("MenuCell", owner: self, options: nil)[0] as! MenuCell
+    }
+    
+    //MARK: Actions
+    
+    func dismissButtonTapped() {
+        let navController = presentingViewController as! UINavigationController
+        let presentingVc = navController.viewControllers[0] as! MenuViewController
+        presentingVc.addMenuItems()
+        
+        dismissViewControllerAnimated(true, completion:nil)
     }
 }
 

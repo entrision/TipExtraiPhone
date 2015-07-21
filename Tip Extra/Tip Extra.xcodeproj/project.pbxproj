@@ -34,6 +34,8 @@
 		047B3BF11B56E37B0079735B /* OrderCompleteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047B3BF01B56E37B0079735B /* OrderCompleteView.xib */; };
 		04C25CEC1B5E864D001F351C /* PlaceOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C25CEB1B5E864D001F351C /* PlaceOrderView.swift */; };
 		04C25CEF1B5E930A001F351C /* OrderConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C25CEE1B5E930A001F351C /* OrderConfirmationViewController.swift */; };
+		04C25CF11B5EA0FB001F351C /* OrderTotalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C25CF01B5EA0FB001F351C /* OrderTotalView.xib */; };
+		04C25CF31B5EA1DA001F351C /* OrderTotalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C25CF21B5EA1DA001F351C /* OrderTotalView.swift */; };
 		04E17A401B55934F00608F85 /* TipExtraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E17A3F1B55934F00608F85 /* TipExtraViewController.swift */; };
 		04E17A421B55936500608F85 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E17A411B55936500608F85 /* RegisterViewController.swift */; };
 		04E17A441B55955F00608F85 /* CardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E17A431B55955F00608F85 /* CardInfoViewController.swift */; };
@@ -86,6 +88,8 @@
 		047B3BF01B56E37B0079735B /* OrderCompleteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCompleteView.xib; sourceTree = "<group>"; };
 		04C25CEB1B5E864D001F351C /* PlaceOrderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceOrderView.swift; sourceTree = "<group>"; };
 		04C25CEE1B5E930A001F351C /* OrderConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderConfirmationViewController.swift; sourceTree = "<group>"; };
+		04C25CF01B5EA0FB001F351C /* OrderTotalView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderTotalView.xib; sourceTree = "<group>"; };
+		04C25CF21B5EA1DA001F351C /* OrderTotalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTotalView.swift; sourceTree = "<group>"; };
 		04E17A3F1B55934F00608F85 /* TipExtraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipExtraViewController.swift; sourceTree = "<group>"; };
 		04E17A411B55936500608F85 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		04E17A431B55955F00608F85 /* CardInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardInfoViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +204,8 @@
 				04E17A481B559F3400608F85 /* ActivityButton.swift */,
 				04399D401B58497C00AE8FE8 /* TipExtraTextField.swift */,
 				04C25CED1B5E866F001F351C /* Menu */,
+				04C25CF21B5EA1DA001F351C /* OrderTotalView.swift */,
+				04C25CF01B5EA0FB001F351C /* OrderTotalView.xib */,
 				047B3BE61B56DDC50079735B /* ConfirmationView.swift */,
 				047B3BE81B56DEC00079735B /* ConfirmationView.xib */,
 				047B3BEE1B56E36F0079735B /* OrderCompleteView.swift */,
@@ -324,6 +330,7 @@
 				04399D3C1B58433B00AE8FE8 /* Raleway-Medium.ttf in Resources */,
 				04F5AF211B592F3A0078D38C /* DatePickerView.xib in Resources */,
 				04399D361B58433B00AE8FE8 /* OFL.txt in Resources */,
+				04C25CF11B5EA0FB001F351C /* OrderTotalView.xib in Resources */,
 				04399D3D1B58433B00AE8FE8 /* Raleway-Regular.ttf in Resources */,
 				0465290A1B558FC900FA126B /* Main.storyboard in Resources */,
 				04399D3B1B58433B00AE8FE8 /* Raleway-Light.ttf in Resources */,
@@ -356,6 +363,7 @@
 			files = (
 				047B3BE71B56DDC50079735B /* ConfirmationView.swift in Sources */,
 				04E17A461B559EB200608F85 /* LoginViewController.swift in Sources */,
+				04C25CF31B5EA1DA001F351C /* OrderTotalView.swift in Sources */,
 				047B3BEF1B56E36F0079735B /* OrderCompleteView.swift in Sources */,
 				04399D411B58497C00AE8FE8 /* TipExtraTextField.swift in Sources */,
 				04C25CEF1B5E930A001F351C /* OrderConfirmationViewController.swift in Sources */,
