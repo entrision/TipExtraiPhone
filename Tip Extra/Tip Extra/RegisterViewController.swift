@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: TipExtraViewController {
     
     let cardInfoSegue = "cardInfoSegue"
 
@@ -54,7 +54,26 @@ class RegisterViewController: UIViewController {
             return
         }
         
-        self.performSegueWithIdentifier(cardInfoSegue, sender: self)
+        let userDict = ["user": ["first_name": firstNameTextField.text,
+            "last_name": lastNameTextField.text,
+            "email": emailTextField.text,
+            "password": passwordTextField.text]]
+        
+        continueButton.startAnimating()
+        APIManager.createUser(userDict, success: { (responseStatus, responseDict) -> () in
+            
+            self.continueButton.stopAnimating()
+            if responseStatus == Utils.kSuccessStatus {
+                self.performSegueWithIdentifier(self.cardInfoSegue, sender: self)
+            } else {
+                //TODO: implement
+                self.showAlert("Oops!", message: "Something went wrong")
+            }
+            
+        }) { (error) -> () in
+            self.continueButton.stopAnimating()
+            println(error)
+        }
     }
     
     //MARK: Misc methods
@@ -88,7 +107,11 @@ class RegisterViewController: UIViewController {
             confirmErrorLabel.hidden = isValid
             confirmErrorLabel.text = "Please enter your password again"
         }
-        
+        if passwordTextField.text != confirmTextField.text {
+            isValid = false
+            confirmErrorLabel.hidden = isValid
+            confirmErrorLabel.text = "Passwords do not match"
+        }
         
         return isValid
     }
