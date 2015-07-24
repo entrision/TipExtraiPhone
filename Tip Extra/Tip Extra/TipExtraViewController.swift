@@ -22,9 +22,9 @@ class TipExtraViewController: UIViewController {
     }
     
     
-    func showAlert(title: String, message: String) {
+    func showDefaultErrorAlert() {
         
-        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        var alert = UIAlertController(title: "Oops!", message: "Something went wrong. We're working hard to fix it!", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }

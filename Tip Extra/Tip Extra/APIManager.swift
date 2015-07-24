@@ -28,14 +28,12 @@ class APIManager: NSObject {
                 println(JSON)
                 
                 var status = 0
-                let jsonDict = JSON as! NSDictionary
+                var jsonDict = JSON as! NSDictionary
                 if jsonDict.objectForKey(Utils.kErrorsKey) != nil {
                     
                     status = Utils.kFailureStatus
                     let errorDict = jsonDict.objectForKey(Utils.kErrorsKey) as! NSDictionary
-                    for dict in errorDict {
-                        //TODO: Implement
-                    }
+                    jsonDict = errorDict
                     
                 } else {
                     

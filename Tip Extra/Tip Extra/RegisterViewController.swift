@@ -66,12 +66,37 @@ class RegisterViewController: TipExtraViewController {
             if responseStatus == Utils.kSuccessStatus {
                 self.performSegueWithIdentifier(self.cardInfoSegue, sender: self)
             } else {
-                //TODO: implement
-                self.showAlert("Oops!", message: "Something went wrong")
+                
+                for var i=0; i<responseDict.count; i++ {
+                    
+                    let key = responseDict.allKeys[i] as! String
+                        
+                    if key == Utils.kFirstNameKey {
+                        let errorMessage = (responseDict.objectForKey(Utils.kFirstNameKey) as! NSArray)[0] as! String
+                        self.firstNameErrorLabel.text = "First name \(errorMessage)"
+                        self.firstNameErrorLabel.hidden = false
+                    }
+                    if key == Utils.kLastNameKey {
+                        let errorMessage = (responseDict.objectForKey(Utils.kLastNameKey) as! NSArray)[0] as! String
+                        self.lastNameErrorLabel.text = "Last name \(errorMessage)"
+                        self.lastNameErrorLabel.hidden = false
+                    }
+                    if key == Utils.kEmailKey {
+                        let errorMessage = (responseDict.objectForKey(Utils.kEmailKey) as! NSArray)[0] as! String
+                        self.emailErrorLabel.text = "Email \(errorMessage)"
+                        self.emailErrorLabel.hidden = false
+                    }
+                    if key == Utils.kPasswordKey {
+                        let errorMessage = (responseDict.objectForKey(Utils.kPasswordKey) as! NSArray)[0] as! String
+                        self.passwordErrorLabel.text = "Password \(errorMessage)"
+                        self.passwordErrorLabel.hidden = false
+                    }
+                }
             }
             
         }) { (error) -> () in
             self.continueButton.stopAnimating()
+            self.showDefaultErrorAlert()
             println(error)
         }
     }
