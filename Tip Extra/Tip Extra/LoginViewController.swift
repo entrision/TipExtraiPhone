@@ -8,18 +8,22 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: TipExtraViewController {
     
-    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var emailErrorLabel: UILabel!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: ActivityButton!
-
+    @IBOutlet weak var passwordErrorLabel: UILabel!
+    @IBOutlet weak var loginErrorLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,7 +33,64 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonTapped(sender: AnyObject) {
         
+        if !isValidEntry() {
+            return
+        }
+        
+        let loginDict = ["user": ["email": emailTextField.text,
+            "password": passwordTextField.text]]
+        
         loginButton.startAnimating()
+        APIManager.loginWithDict(loginDict, success: { (responseStatus, responseDict) -> () in
+            
+            self.loginButton.stopAnimating()
+            if responseStatus == Utils.kSuccessStatus {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            } else {
+                
+                for var i=0; i<responseDict.count; i++ {
+                    let key = responseDict.allKeys[i] as! String
+                    if key == Utils.kLoginKey {
+                        let errorMessage = (responseDict.objectForKey(Utils.kLoginKey) as! NSArray)[0] as! String
+                        self.loginErrorLabel.text = errorMessage
+                        self.loginErrorLabel.hidden = false
+                    }
+                    if key == Utils.kEmailKey {
+                        let errorMessage = (responseDict.objectForKey(Utils.kEmailKey) as! NSArray)[0] as! String
+                        self.emailErrorLabel.text = "Email \(errorMessage)"
+                        self.emailErrorLabel.hidden = false
+                    }
+                    if key == Utils.kPasswordKey {
+                        let errorMessage = (responseDict.objectForKey(Utils.kPasswordKey) as! NSArray)[0] as! String
+                        self.passwordErrorLabel.text = "Password \(errorMessage)"
+                        self.passwordErrorLabel.hidden = false
+                    }
+                }
+            }
+            
+        }) { (error) -> () in
+            self.loginButton.stopAnimating()
+            self.showDefaultErrorAlert()
+        }
+        
+    }
+    
+    func isValidEntry() -> Bool {
+        
+        var isValid = true
+        
+        if emailTextField.text == "" {
+            isValid = false
+            emailErrorLabel.hidden = isValid
+            emailErrorLabel.text = "Please enter your email"
+        }
+        if passwordTextField.text == "" {
+            isValid = false
+            passwordErrorLabel.hidden = isValid
+            passwordErrorLabel.text = "Please enter your password"
+        }
+        
+        return isValid
     }
 
     /*
@@ -42,4 +103,21 @@ class LoginViewController: UIViewController {
     }
     */
 
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        
+        if textField == emailTextField {
+            emailErrorLabel.hidden = textField.text != ""
+        } else if textField == passwordTextField {
+            passwordErrorLabel.hidden = textField.text != ""
+        }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return true
+    }
 }

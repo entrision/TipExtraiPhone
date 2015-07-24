@@ -68,9 +68,7 @@ class RegisterViewController: TipExtraViewController {
             } else {
                 
                 for var i=0; i<responseDict.count; i++ {
-                    
                     let key = responseDict.allKeys[i] as! String
-                        
                     if key == Utils.kFirstNameKey {
                         let errorMessage = (responseDict.objectForKey(Utils.kFirstNameKey) as! NSArray)[0] as! String
                         self.firstNameErrorLabel.text = "First name \(errorMessage)"

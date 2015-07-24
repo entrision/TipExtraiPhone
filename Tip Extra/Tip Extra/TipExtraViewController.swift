@@ -9,6 +9,8 @@
 import UIKit
 
 class TipExtraViewController: UIViewController {
+    
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()

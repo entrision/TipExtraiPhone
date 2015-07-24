@@ -43,6 +43,16 @@ class MenuViewController: TipExtraViewController {
         self.addMenuItems()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if appDelegate.theUser?.authToken == nil {
+            
+            let loginVc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+            self.presentViewController(loginVc, animated: false, completion: nil)
+        }
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == kOrderConfirmationSegue {

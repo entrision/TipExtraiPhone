@@ -11,16 +11,35 @@ import Alamofire
 
 class APIManager: NSObject {
     
-    static var theUser: User?
-    
     static let kBaseURL = "http://104.236.73.241/api/v1/"
+    
+    //MARK: Authentication
     
     class func createUser(userDict: [String: AnyObject], success: (responseStatus: Int!, responseDict: NSDictionary!)->(), failure: (error: NSError!)->()) {
      
         let url = kBaseURL + "users"
+        self.handleAuthentication(url, userDict: userDict, success: { (responseStatus, responseDict) -> () in
+            success(responseStatus: responseStatus, responseDict: responseDict)
+        }, failure: { (error) -> () in
+            failure(error: error)
+        })
+    }
+    
+    class func loginWithDict(loginDict: [String: AnyObject], success: (responseStatus: Int!, responseDict: NSDictionary!)->(), failure: (error: NSError!)->()) {
+     
+        let url = kBaseURL + "sessions"
+        self.handleAuthentication(url, userDict: loginDict, success: { (responseStatus, responseDict) -> () in
+            success(responseStatus: responseStatus, responseDict: responseDict)
+        }) { (error) -> () in
+            failure(error: error)
+        }
+    }
+    
+    private class func handleAuthentication(url: String, userDict: [String: AnyObject], success: (responseStatus: Int!, responseDict: NSDictionary!)->(), failure: (error: NSError!)->()) {
+        
         Alamofire.request(.POST, url, parameters: userDict, encoding: .JSON)
         .responseJSON { (request, response, JSON, error) -> Void in
-            
+                
             if error != nil {
                 failure(error: error)
             } else {
@@ -39,13 +58,15 @@ class APIManager: NSObject {
                     
                     status = Utils.kSuccessStatus
                     let userDict = jsonDict.objectForKey("user") as! NSDictionary
-                    let userID = userDict.objectForKey("id") as! NSNumber
+                    let userID = userDict.objectForKey(Utils.kIDKey) as! NSNumber
                     let first_name = userDict.objectForKey(Utils.kFirstNameKey) as! String
                     let last_name = userDict.objectForKey(Utils.kLastNameKey) as! String
                     let email = userDict.objectForKey(Utils.kEmailKey) as! String
-                    let authToken = userDict.objectForKey("authentication_token") as! String
-                    let brainTreeID = userDict.objectForKey("braintree_customer_id") as! String
-                    self.theUser = User(userID: userID, firstName: first_name, lastName: last_name, email: email, authToken: authToken, brainTreeID: brainTreeID)
+                    let authToken = userDict.objectForKey(Utils.kAuthTokenKey) as! String
+                    let brainTreeID = userDict.objectForKey(Utils.kBraintreeIDKey) as! String
+                    
+                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    appDelegate.theUser = User(userID: userID, firstName: first_name, lastName: last_name, email: email, authToken: authToken, brainTreeID: brainTreeID)
                 }
                 
                 success(responseStatus: status, responseDict: jsonDict)
@@ -67,10 +88,5 @@ class APIManager: NSObject {
                 success(responseArray: JSON as! NSArray)
             }
         }
-    }
-    
-    private class func showAlertForErrorDict(errorDict: NSDictionary) {
-        
-        
     }
 }

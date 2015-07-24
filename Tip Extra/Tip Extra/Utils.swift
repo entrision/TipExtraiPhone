@@ -13,8 +13,12 @@ class Utils: NSObject {
     static let kSuccessStatus = 1234
     static let kFailureStatus = -4321
     
+    static let kIDKey = "id"
+    static let kAuthTokenKey = "authentication_token"
+    static let kBraintreeIDKey = "braintree_customer_id"
     static let kFirstNameKey = "first_name"
     static let kLastNameKey = "last_name"
+    static let kLoginKey = "login"
     static let kEmailKey = "email"
     static let kPasswordKey = "password"
     
