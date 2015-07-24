@@ -21,6 +21,8 @@ class Utils: NSObject {
     static let kLoginKey = "login"
     static let kEmailKey = "email"
     static let kPasswordKey = "password"
+    static let kNameKey = "name"
+    static let kServiceEnabled = "service_enabled"
     
     static let kErrorsKey = "errors"
 }

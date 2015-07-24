@@ -49,21 +49,60 @@ class APIManager: NSObject {
                 var status = 0
                 var jsonDict = JSON as! NSDictionary
                 if jsonDict.objectForKey(Utils.kErrorsKey) != nil {
-                    
                     status = Utils.kFailureStatus
                     let errorDict = jsonDict.objectForKey(Utils.kErrorsKey) as! NSDictionary
                     jsonDict = errorDict
                     
                 } else {
-                    
                     status = Utils.kSuccessStatus
                     let userDict = jsonDict.objectForKey("user") as! [String: AnyObject]
                     DefaultsManager.userDict = userDict
                     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                     appDelegate.theUser = User(userDict: userDict)
+                    
+                    var manager = Manager.sharedInstance
+                    manager.session.configuration.HTTPAdditionalHeaders = [
+                        "Authorization": "Token token=\(appDelegate.theUser?.authToken)"
+                    ]
                 }
                 
                 success(responseStatus: status, responseDict: jsonDict)
+            }
+        }
+    }
+    
+    //MARK: Content
+    
+    //TODO: Get menus
+    
+    class func getMenus(success: (responseStatus: Int!, responseArray: NSArray!)->(), failure: (error: NSError!)->()) {
+        
+        let url = kBaseURL + "menus"
+        Alamofire.request(.GET, url, parameters: nil, encoding: .JSON)
+        .responseJSON { (request, response, JSON, error) -> Void in
+            
+            if error != nil {
+                failure(error: error)
+            } else {
+                
+                println(JSON)
+                
+                var status = 0
+                var jsonDict = JSON as! NSDictionary
+                if jsonDict.objectForKey(Utils.kErrorsKey) != nil {
+                    let errorDict = jsonDict.objectForKey(Utils.kErrorsKey) as! NSDictionary
+                    success(responseStatus: Utils.kFailureStatus, responseArray: [errorDict])
+                } else {
+                    let menuArray = jsonDict.objectForKey("menus") as! NSArray
+                    let menus = NSMutableArray()
+                    for var i=0; i<menuArray.count; i++ {
+                        let menuDict = menuArray[i] as! [String: AnyObject]
+                        let menu = Menu(menuDict: menuDict)
+                        menus.addObject(menu)
+                    }
+                    
+                    success(responseStatus: Utils.kSuccessStatus, responseArray: menus)
+                }
             }
         }
     }

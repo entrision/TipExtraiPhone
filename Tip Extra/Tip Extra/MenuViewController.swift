@@ -40,7 +40,7 @@ class MenuViewController: TipExtraViewController {
         tapGr.numberOfTapsRequired = 1
         placeOrderView.addGestureRecognizer(tapGr)
         
-        self.addMenuItems()
+        addMenuItems()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -90,14 +90,31 @@ class MenuViewController: TipExtraViewController {
     }
     
     func addMenuItems() {
-        let menuItem = MenuItem(name: "Jack and Coke", price: 4.00)
-        let menuItem2 = MenuItem(name: "Corona", price: 5.00)
-        let menuItem3 = MenuItem(name: "Martini", price: 10.00)
+//        let menuItem = MenuItem(name: "Jack and Coke", price: 4.00)
+//        let menuItem2 = MenuItem(name: "Corona", price: 5.00)
+//        let menuItem3 = MenuItem(name: "Martini", price: 10.00)
+//        
+//        menuItems = [menuItem, menuItem2, menuItem3]
+//        selectedOrderItems = NSMutableArray()
+//        theTableView.reloadData()
+//        updateOrder()
         
-        menuItems = [menuItem, menuItem2, menuItem3]
-        selectedOrderItems = NSMutableArray()
-        theTableView.reloadData()
-        updateOrder()
+        if DefaultsManager.userDict != nil {
+            APIManager.getMenus({ (responseStatus, responseArray) -> () in
+                
+                if responseStatus == Utils.kSuccessStatus {
+                    
+                    println(responseArray)
+                    
+                } else {
+                    
+                    println(responseArray[0])
+                }
+                
+                }, failure: { (error) -> () in
+                    println(error)
+            })
+        }
     }
     
     func delay(delay:Double, closure:()->()) {

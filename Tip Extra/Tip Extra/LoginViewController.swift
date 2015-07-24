@@ -52,7 +52,10 @@ class LoginViewController: TipExtraViewController {
             
             self.loginButton.stopAnimating()
             if responseStatus == Utils.kSuccessStatus {
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismissViewControllerAnimated(true, completion:nil)
+                let navController = self.presentingViewController as! UINavigationController
+                let menuController = navController.viewControllers[0] as! MenuViewController
+                menuController.addMenuItems()
             } else {
                 
                 for var i=0; i<responseDict.count; i++ {
