@@ -47,6 +47,11 @@ class CardInfoViewController: UIViewController {
         }
     }
     
+    
+    @IBAction func loginButtonTapped(sender: AnyObject) {
+        navigationController?.popToRootViewControllerAnimated(true)
+    }
+    
     //MARK: Misc methods
     
     func isValidEntry() -> Bool {

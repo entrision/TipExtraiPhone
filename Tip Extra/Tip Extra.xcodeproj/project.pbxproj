@@ -37,6 +37,7 @@
 		04C25CEF1B5E930A001F351C /* OrderConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C25CEE1B5E930A001F351C /* OrderConfirmationViewController.swift */; };
 		04C25CF11B5EA0FB001F351C /* OrderTotalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C25CF01B5EA0FB001F351C /* OrderTotalView.xib */; };
 		04C25CF31B5EA1DA001F351C /* OrderTotalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C25CF21B5EA1DA001F351C /* OrderTotalView.swift */; };
+		04D3875D1B62B18900EED289 /* DefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D3875C1B62B18900EED289 /* DefaultsManager.swift */; };
 		04DCAA7D1B6176A200EE1411 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DCAA7C1B6176A200EE1411 /* User.swift */; };
 		04DCAA7F1B61A62E00EE1411 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DCAA7E1B61A62E00EE1411 /* Utils.swift */; };
 		04E17A401B55934F00608F85 /* TipExtraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E17A3F1B55934F00608F85 /* TipExtraViewController.swift */; };
@@ -95,6 +96,7 @@
 		04C25CEE1B5E930A001F351C /* OrderConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderConfirmationViewController.swift; sourceTree = "<group>"; };
 		04C25CF01B5EA0FB001F351C /* OrderTotalView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderTotalView.xib; sourceTree = "<group>"; };
 		04C25CF21B5EA1DA001F351C /* OrderTotalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTotalView.swift; sourceTree = "<group>"; };
+		04D3875C1B62B18900EED289 /* DefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsManager.swift; sourceTree = "<group>"; };
 		04DCAA7C1B6176A200EE1411 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		04DCAA7E1B61A62E00EE1411 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		04E17A3F1B55934F00608F85 /* TipExtraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipExtraViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			children = (
 				04399D2B1B58433B00AE8FE8 /* Raleway */,
 				04DCAA7E1B61A62E00EE1411 /* Utils.swift */,
+				04D3875C1B62B18900EED289 /* DefaultsManager.swift */,
 				046529031B558FC900FA126B /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -463,6 +466,7 @@
 				046529071B558FC900FA126B /* MenuViewController.swift in Sources */,
 				04E17A441B55955F00608F85 /* CardInfoViewController.swift in Sources */,
 				047B3BE11B56A3580079735B /* Order.swift in Sources */,
+				04D3875D1B62B18900EED289 /* DefaultsManager.swift in Sources */,
 				04C25CEC1B5E864D001F351C /* PlaceOrderView.swift in Sources */,
 				04E17A491B559F3400608F85 /* ActivityButton.swift in Sources */,
 				0462AB211B5EBE5400D00C97 /* APIManager.swift in Sources */,

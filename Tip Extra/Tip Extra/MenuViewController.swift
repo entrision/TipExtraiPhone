@@ -46,9 +46,11 @@ class MenuViewController: TipExtraViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if appDelegate.theUser?.authToken == nil {
-            
-            let loginVc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+        if let userDict = DefaultsManager.userDict {
+            appDelegate.theUser = User(userDict: userDict)
+        } else {
+            let loginVc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginNavController") as! UINavigationController
+            loginVc.modalTransitionStyle = .CrossDissolve
             self.presentViewController(loginVc, animated: false, completion: nil)
         }
     }

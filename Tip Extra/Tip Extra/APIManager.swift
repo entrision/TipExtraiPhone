@@ -57,16 +57,10 @@ class APIManager: NSObject {
                 } else {
                     
                     status = Utils.kSuccessStatus
-                    let userDict = jsonDict.objectForKey("user") as! NSDictionary
-                    let userID = userDict.objectForKey(Utils.kIDKey) as! NSNumber
-                    let first_name = userDict.objectForKey(Utils.kFirstNameKey) as! String
-                    let last_name = userDict.objectForKey(Utils.kLastNameKey) as! String
-                    let email = userDict.objectForKey(Utils.kEmailKey) as! String
-                    let authToken = userDict.objectForKey(Utils.kAuthTokenKey) as! String
-                    let brainTreeID = userDict.objectForKey(Utils.kBraintreeIDKey) as! String
-                    
+                    let userDict = jsonDict.objectForKey("user") as! [String: AnyObject]
+                    DefaultsManager.userDict = userDict
                     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                    appDelegate.theUser = User(userID: userID, firstName: first_name, lastName: last_name, email: email, authToken: authToken, brainTreeID: brainTreeID)
+                    appDelegate.theUser = User(userDict: userDict)
                 }
                 
                 success(responseStatus: status, responseDict: jsonDict)

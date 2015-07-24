@@ -18,16 +18,17 @@ class User: NSObject {
     var brainTreeID: String
     
     convenience override init() {
-        self.init(userID: 0, firstName: "", lastName: "", email: "", authToken: "", brainTreeID: "")
+        self.init(userDict: ["": ""])
     }
     
-    init(userID: NSNumber, firstName: String, lastName: String, email: String, authToken: String, brainTreeID: String) {
-        self.userID = userID
-        self.firstName = firstName
-        self.lastName = lastName
-        self.email = email
-        self.authToken = authToken
-        self.brainTreeID = brainTreeID
+    init(userDict: [String: AnyObject]) {
+        
+        self.userID = userDict[Utils.kIDKey] as! NSNumber
+        self.firstName = userDict[Utils.kFirstNameKey] as! String
+        self.lastName = userDict[Utils.kLastNameKey] as! String
+        self.email = userDict[Utils.kEmailKey] as! String
+        self.authToken = userDict[Utils.kAuthTokenKey] as! String
+        self.brainTreeID = userDict[Utils.kBraintreeIDKey] as! String
         super.init()
     }
 }

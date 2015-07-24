@@ -24,6 +24,12 @@ class LoginViewController: TipExtraViewController {
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        
+        //DEVELOPMENT
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        self.emailTextField.text = "hunter@entrision.com"
+        self.passwordTextField.text = "password"
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,7 +43,8 @@ class LoginViewController: TipExtraViewController {
             return
         }
         
-        let loginDict = ["user": ["email": emailTextField.text,
+        view.endEditing(true)
+        let loginDict = ["user": ["email": emailTextField.text.lowercaseString,
             "password": passwordTextField.text]]
         
         loginButton.startAnimating()
@@ -73,6 +80,10 @@ class LoginViewController: TipExtraViewController {
             self.showDefaultErrorAlert()
         }
         
+    }
+    
+    @IBAction func signUpButtonTapped(sender: AnyObject) {
+        performSegueWithIdentifier("registerSegue", sender: self)
     }
     
     func isValidEntry() -> Bool {

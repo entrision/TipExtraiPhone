@@ -98,6 +98,10 @@ class RegisterViewController: TipExtraViewController {
             println(error)
         }
     }
+
+    @IBAction func loginButtonTapped(sender: AnyObject) {
+        navigationController?.popToRootViewControllerAnimated(true)
+    }
     
     //MARK: Misc methods
     
