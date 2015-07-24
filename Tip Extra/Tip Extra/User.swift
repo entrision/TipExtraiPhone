@@ -22,7 +22,6 @@ class User: NSObject {
     }
     
     init(userDict: [String: AnyObject]) {
-        
         self.userID = userDict[Utils.kIDKey] as! NSNumber
         self.firstName = userDict[Utils.kFirstNameKey] as! String
         self.lastName = userDict[Utils.kLastNameKey] as! String

@@ -52,7 +52,6 @@ class APIManager: NSObject {
                     status = Utils.kFailureStatus
                     let errorDict = jsonDict.objectForKey(Utils.kErrorsKey) as! NSDictionary
                     jsonDict = errorDict
-                    
                 } else {
                     status = Utils.kSuccessStatus
                     let userDict = jsonDict.objectForKey("user") as! [String: AnyObject]
@@ -73,8 +72,6 @@ class APIManager: NSObject {
     
     //MARK: Content
     
-    //TODO: Get menus
-    
     class func getMenus(success: (responseStatus: Int!, responseArray: NSArray!)->(), failure: (error: NSError!)->()) {
         
         let url = kBaseURL + "menus"
@@ -86,8 +83,7 @@ class APIManager: NSObject {
             } else {
                 
                 println(JSON)
-                
-                var status = 0
+
                 var jsonDict = JSON as! NSDictionary
                 if jsonDict.objectForKey(Utils.kErrorsKey) != nil {
                     let errorDict = jsonDict.objectForKey(Utils.kErrorsKey) as! NSDictionary
@@ -107,9 +103,9 @@ class APIManager: NSObject {
         }
     }
     
-    class func getBars(success: (responseArray: NSArray!)->(), failure: (error: NSError!)->()) {
-    
-        let url = kBaseURL + "menus"
+    class func getMenuItemsForMenu(menu: Menu, success: (responseStatus: Int!, responseArray: NSArray!)->(), failure: (error: NSError!)->()) {
+        
+        let url = kBaseURL + "menus/\(menu.menuID)"
         Alamofire.request(.GET, url, parameters: nil, encoding: .JSON)
         .responseJSON { (request, response, JSON, error) -> Void in
                 
@@ -118,7 +114,23 @@ class APIManager: NSObject {
             } else {
                 
                 println(JSON)
-                success(responseArray: JSON as! NSArray)
+        
+                var jsonDict = JSON as! NSDictionary
+                if jsonDict.objectForKey(Utils.kErrorsKey) != nil {
+                    let errorDict = jsonDict.objectForKey(Utils.kErrorsKey) as! NSDictionary
+                    success(responseStatus: Utils.kFailureStatus, responseArray: [errorDict])
+                } else {
+                    let menuDict = jsonDict.objectForKey(Utils.kMenuKey) as! NSDictionary
+                    let drinkArray = menuDict.objectForKey(Utils.kDrinksKey) as! NSArray
+                    let drinks = NSMutableArray()
+                    for var i=0; i<drinkArray.count; i++ {
+                        let drinkDict = drinkArray[i] as! [String: AnyObject]
+                        let menuItem = MenuItem(drinkDict: drinkDict)
+                        drinks.addObject(menuItem)
+                    }
+                    
+                    success(responseStatus: Utils.kSuccessStatus, responseArray: drinks)
+                }
             }
         }
     }

@@ -13,6 +13,7 @@ class Menu: NSObject {
     var menuID: NSNumber
     var name: String
     var serviceEnabled: Bool
+    var menuItems: NSArray?
     
     convenience override init() {
         self.init(menuDict: ["": ""])

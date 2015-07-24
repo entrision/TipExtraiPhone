@@ -22,7 +22,10 @@ class Utils: NSObject {
     static let kEmailKey = "email"
     static let kPasswordKey = "password"
     static let kNameKey = "name"
+    static let kPriceKey = "price"
     static let kServiceEnabled = "service_enabled"
+    static let kMenuKey = "menu"
+    static let kDrinksKey = "drinks"
     
     static let kErrorsKey = "errors"
 }

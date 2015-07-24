@@ -10,18 +10,20 @@ import UIKit
 
 class MenuItem: NSObject {
     
-    var name: String = ""
-    var price: Float = 0.0
+    var itemID: NSNumber
+    var name: String
+    var price: Float
     var ordered: Bool = false
     var quantity: Int = 0
     
     convenience override init() {
-        self.init(name:"", price:0.0)
+        self.init(drinkDict: ["":""])
     }
     
-    init(name: String, price: Float) {
+    init(drinkDict: [String: AnyObject]) {
+        self.itemID = drinkDict[Utils.kIDKey] as! NSNumber
+        self.name = drinkDict[Utils.kNameKey] as! String
+        self.price = (drinkDict[Utils.kPriceKey] as! NSString).floatValue
         super.init()
-        self.name = name
-        self.price = price
     }
 }
