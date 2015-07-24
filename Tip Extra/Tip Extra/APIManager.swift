@@ -103,7 +103,7 @@ class APIManager: NSObject {
         }
     }
     
-    class func getMenuItemsForMenu(menu: Menu, success: (responseStatus: Int!, responseArray: NSArray!)->(), failure: (error: NSError!)->()) {
+    class func getItemsForMenu(menu: Menu, success: (responseStatus: Int!, responseArray: NSArray!)->(), failure: (error: NSError!)->()) {
         
         let url = kBaseURL + "menus/\(menu.menuID)"
         Alamofire.request(.GET, url, parameters: nil, encoding: .JSON)
