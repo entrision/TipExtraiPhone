@@ -19,8 +19,13 @@ class TipExtraViewController: UIViewController {
     }
     
     func showDefaultErrorAlert() {
-        
         var alert = UIAlertController(title: "Oops!", message: "Something went wrong. We're working hard to fix it!", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func showErrorAlertWithTitle(theTitle: String, theMessage: String) {
+        var alert = UIAlertController(title: theTitle, message: theMessage, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }

@@ -71,7 +71,7 @@ class MenuViewController: TipExtraViewController {
         }
     }
     
-    //MARK: Private methods
+    //MARK: Misc methods
     
     func updateOrder() {
         
@@ -93,30 +93,36 @@ class MenuViewController: TipExtraViewController {
     func addMenuItems() {
         
         if DefaultsManager.userDict != nil {
-            SVProgressHUD.showWithStatus("Adding menu items...")
+            SVProgressHUD.showWithStatus("Adding\nmenu items")
             APIManager.getMenus({ (responseStatus, responseArray) -> () in
                 SVProgressHUD.dismiss()
                 if responseStatus == Utils.kSuccessStatus {
                     let menu = responseArray[0] as! Menu
-                    APIManager.getItemsForMenu(menu, success: { (responseStatus, responseArray) -> () in
-                        SVProgressHUD.dismiss()
-                        if responseStatus == Utils.kSuccessStatus {
-                            self.menuItems = responseArray
-                            self.theTableView.reloadData()
-                            self.selectedOrderItems = NSMutableArray()
-                            self.updateOrder()
-                        } else {
-                            //TODO: Error handling
-                            println(responseArray[0])
-                        }
-                    }, failure: { (error) -> () in
-                        SVProgressHUD.dismiss()
-                        self.showDefaultErrorAlert()
-                        println(error)
-                    })
-                    
+                    if menu.serviceEnabled {
+                        self.theTableView.hidden = false
+                        APIManager.getItemsForMenu(menu, success: { (responseStatus, responseArray) -> () in
+                            SVProgressHUD.dismiss()
+                            if responseStatus == Utils.kSuccessStatus {
+                                self.menuItems = responseArray
+                                self.theTableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Bottom)
+                                self.selectedOrderItems = NSMutableArray()
+                                self.updateOrder()
+                            } else {
+                                //Only expecting 'Access Denied" error here
+                                self.showErrorAlertWithTitle("Access Denied", theMessage: "User not authenticated")
+                                println(responseArray[0])
+                            }
+                            }, failure: { (error) -> () in
+                                SVProgressHUD.dismiss()
+                                self.showDefaultErrorAlert()
+                                println(error)
+                        })
+                    } else {
+                        self.theTableView.hidden = true
+                    }
                 } else {
-                    //TODO: Error handling
+                    //Only expecting 'Access Denied" error here
+                    self.showErrorAlertWithTitle("Access Denied", theMessage: "User not authenticated")
                     println(responseArray[0])
                 }
                 
@@ -126,6 +132,20 @@ class MenuViewController: TipExtraViewController {
                     println(error)
             })
         }
+    }
+    
+    func resetMenu() {
+        
+        theOrder = Order.new()
+        selectedOrderItems = NSMutableArray()
+        updateOrder()
+        
+        for menuItem in menuItems as! [MenuItem] {
+            menuItem.quantity = 0
+            menuItem.ordered = false
+        }
+        
+        theTableView.reloadData()
     }
     
     //MARK: Actions

@@ -44,7 +44,7 @@ class OrderConfirmationViewController: UIViewController {
     func dismissButtonTapped() {
         let navController = presentingViewController as! UINavigationController
         let presentingVc = navController.viewControllers[0] as! MenuViewController
-        presentingVc.addMenuItems()
+        presentingVc.resetMenu()
         
         dismissViewControllerAnimated(true, completion:nil)
     }
