@@ -13,6 +13,8 @@ class MenuItem: NSObject {
     var itemID: NSNumber
     var name: String
     var price: Float
+    var imageURL: String
+    var thumbURL: String
     var ordered: Bool = false
     var quantity: Int = 0
     
@@ -23,7 +25,11 @@ class MenuItem: NSObject {
     init(drinkDict: [String: AnyObject]) {
         self.itemID = drinkDict[Utils.kIDKey] as! NSNumber
         self.name = drinkDict[Utils.kNameKey] as! String
-        self.price = (drinkDict[Utils.kPriceKey] as! NSString).floatValue
+        self.price = (drinkDict[Utils.kPriceKey] as! NSNumber).floatValue
+        
+        let imageDict = drinkDict[Utils.kImageKey] as! [String: AnyObject]
+        self.imageURL = imageDict[Utils.kImageURLKey] as! String
+        self.thumbURL = imageDict[Utils.kThumbURLKey] as! String
         super.init()
     }
 }

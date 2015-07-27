@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class MenuViewController: TipExtraViewController {
     
@@ -90,28 +91,38 @@ class MenuViewController: TipExtraViewController {
     }
     
     func addMenuItems() {
-//        let menuItem = MenuItem(name: "Jack and Coke", price: 4.00)
-//        let menuItem2 = MenuItem(name: "Corona", price: 5.00)
-//        let menuItem3 = MenuItem(name: "Martini", price: 10.00)
-//        
-//        menuItems = [menuItem, menuItem2, menuItem3]
-//        selectedOrderItems = NSMutableArray()
-//        theTableView.reloadData()
-//        updateOrder()
         
         if DefaultsManager.userDict != nil {
+            SVProgressHUD.showWithStatus("Adding menu items...")
             APIManager.getMenus({ (responseStatus, responseArray) -> () in
-                
+                SVProgressHUD.dismiss()
                 if responseStatus == Utils.kSuccessStatus {
-                    
-                    println(responseArray)
+                    let menu = responseArray[0] as! Menu
+                    APIManager.getItemsForMenu(menu, success: { (responseStatus, responseArray) -> () in
+                        SVProgressHUD.dismiss()
+                        if responseStatus == Utils.kSuccessStatus {
+                            self.menuItems = responseArray
+                            self.theTableView.reloadData()
+                            self.selectedOrderItems = NSMutableArray()
+                            self.updateOrder()
+                        } else {
+                            //TODO: Error handling
+                            println(responseArray[0])
+                        }
+                    }, failure: { (error) -> () in
+                        SVProgressHUD.dismiss()
+                        self.showDefaultErrorAlert()
+                        println(error)
+                    })
                     
                 } else {
-                    
+                    //TODO: Error handling
                     println(responseArray[0])
                 }
                 
                 }, failure: { (error) -> () in
+                    SVProgressHUD.dismiss()
+                    self.showDefaultErrorAlert()
                     println(error)
             })
         }

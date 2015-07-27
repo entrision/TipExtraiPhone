@@ -23,7 +23,7 @@ class Menu: NSObject {
         
         self.menuID = menuDict[Utils.kIDKey] as! NSNumber
         self.name = menuDict[Utils.kNameKey] as! String
-        self.serviceEnabled = (menuDict[Utils.kServiceEnabled] as! NSString).boolValue
+        self.serviceEnabled = (menuDict[Utils.kServiceEnabled] as! NSNumber).boolValue
         super.init()
     }
 }

@@ -22,9 +22,14 @@ class MenuCell: UITableViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var qtyLabel: UILabel!
     
-    var menuItem: MenuItem = MenuItem()  {
+    var menuItem: MenuItem!  {
         
         didSet {
+            
+            APIManager.getImage(menuItem.imageURL, success: { (theImage) -> () in
+                self.theImageView.image = theImage
+            }) { (error) -> () in
+            }
             
             nameLabel.text = menuItem.name
             priceLabel.text = String(format: "$%.2f", menuItem.price)
@@ -38,6 +43,7 @@ class MenuCell: UITableViewCell {
         // Initialization code
         
         theImageView.layer.cornerRadius = theImageView.frame.size.width / 2
+        theImageView.layer.masksToBounds = true
 
         qtyLabel.layer.borderColor = UIColor.darkGrayColor().CGColor
         qtyLabel.layer.borderWidth = 0.5

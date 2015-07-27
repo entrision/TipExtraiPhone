@@ -134,4 +134,21 @@ class APIManager: NSObject {
             }
         }
     }
+    
+    //MARK: Images
+    
+    class func getImage(path: String, success: (theImage: UIImage!)->(), failure: (error: NSError!)->()) {
+        
+        Alamofire.request(.GET, NSURL(string: path)!)
+            .response() { (_, _, data, error) in
+                
+                if error != nil {
+                    failure(error: error)
+                }
+                else {
+                    let image = UIImage(data: data! as! NSData)
+                    success(theImage: image)
+                }
+        }
+    }
 }
