@@ -19,7 +19,7 @@ class MenuViewController: TipExtraViewController {
     @IBOutlet weak var theTableView: UITableView!
     @IBOutlet weak var placeOrderView: PlaceOrderView!
     
-    var theOrder = Order.new()
+    var theOrder = Order()
     var menuItems = NSArray()
     var selectedOrderItems = NSMutableArray()
     
@@ -136,7 +136,7 @@ class MenuViewController: TipExtraViewController {
     
     func resetMenu() {
         
-        theOrder = Order.new()
+        theOrder = Order()
         selectedOrderItems = NSMutableArray()
         updateOrder()
         
@@ -151,7 +151,26 @@ class MenuViewController: TipExtraViewController {
     //MARK: Actions
     
     func placeOrderTapGesture(gr: UIGestureRecognizer) {
-        performSegueWithIdentifier(kOrderConfirmationSegue, sender: self)
+        
+        let orderItems = NSMutableArray()
+        for menuItem in theOrder.orderItems as! [MenuItem] {
+            let itemDict = ["drink_id": menuItem.itemID, "qty": menuItem.quantity]
+            orderItems.addObject(itemDict)
+        }
+        
+        let orderDict = ["order": ["line_items_attributes": orderItems]]
+        APIManager.placeOrder(orderDict, success: { (responseStatus, responseDict) -> () in
+            if responseStatus == Utils.kSuccessStatus {
+                self.theOrder = responseDict["order"] as! Order
+                self.performSegueWithIdentifier(self.kOrderConfirmationSegue, sender: self)
+            } else {
+                //TODO: Handle error
+            }
+            
+        }) { (error) -> () in
+            println(error)
+            self.showDefaultErrorAlert()
+        }
     }
 }
 

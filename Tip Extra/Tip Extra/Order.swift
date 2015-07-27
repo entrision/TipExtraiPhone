@@ -10,7 +10,8 @@ import UIKit
 
 class Order: NSObject {
    
-    var orderItems = NSArray()
+    var orderID: NSNumber
+    var orderItems: NSArray
     var total: Float {
         
         get {
@@ -24,11 +25,22 @@ class Order: NSObject {
     }
     
     convenience override init() {
-        self.init(orderItems:[])
+        self.init(orderDict:["id":-1, "line_items":[]])
     }
     
-    init(orderItems: NSArray) {
-        super.init()
+    init(orderDict: [String: AnyObject]) {
+        self.orderID = orderDict["id"] as! NSNumber
+        let itemsArray = orderDict["line_items"] as! NSArray
+        let orderItems = NSMutableArray()
+        for var i=0; i<itemsArray.count; i++ {
+            let menuItem = MenuItem()
+            let itemDict = itemsArray[i] as! [String: AnyObject]
+            menuItem.itemID = itemDict["drink_id"] as! NSNumber
+            menuItem.quantity = itemDict["qty"] as! Int
+            menuItem.price = itemDict["cost"] as! Float
+            orderItems.addObject(menuItem)
+        }
         self.orderItems = orderItems
+        super.init()
     }
 }

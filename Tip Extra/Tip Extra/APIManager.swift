@@ -151,4 +151,28 @@ class APIManager: NSObject {
                 }
         }
     }
+    
+    //MARK: Orders
+    
+    class func placeOrder(orderDict: [String: AnyObject], success: (responseStatus: Int!, responseDict: NSDictionary!)->(), failure: (error: NSError!)->()) {
+        
+        let url = kBaseURL + "orders"
+        Alamofire.request(.POST, url, parameters: nil, encoding: .JSON)
+        .responseJSON { (request, response, JSON, error) -> Void in
+            
+            if error != nil {
+                failure(error: error)
+            } else {
+                var jsonDict = JSON as! NSDictionary
+                if jsonDict.objectForKey(Utils.kErrorsKey) != nil {
+                    let errorDict = jsonDict.objectForKey(Utils.kErrorsKey) as! NSDictionary
+                    success(responseStatus: Utils.kFailureStatus, responseDict: errorDict)
+                } else {
+                    let orderDict = jsonDict.objectForKey("order") as! [String: AnyObject]
+                    let order = Order(orderDict: orderDict)
+                    success(responseStatus: Utils.kSuccessStatus, responseDict:["order": order])
+                }
+            }
+        }
+    }
 }
