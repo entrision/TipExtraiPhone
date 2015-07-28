@@ -14,9 +14,11 @@ class MenuViewController: TipExtraViewController {
     
     let cellID = "MenuCellID"
     let kOrderConfirmationSegue = "orderConfirmationSegue"
+    let kOptionsPopoverSegue = "optionsPopoverSegue"
     
     var dummyCell = MenuCell()
 
+    @IBOutlet weak var optionsBarButton: UIBarButtonItem!
     @IBOutlet weak var theTableView: UITableView!
     @IBOutlet weak var placeOrderView: PlaceOrderView!
     
@@ -29,6 +31,11 @@ class MenuViewController: TipExtraViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         navigationItem.titleView = NSBundle.mainBundle().loadNibNamed("MenuTitleView", owner: self, options: nil)[0] as? UIView
+        
+        let optionButton = UIButton(frame: CGRectMake(0, 0, 30, 30))
+        optionButton.addTarget(self, action: Selector("optionsButtonTapped"), forControlEvents: UIControlEvents.TouchUpInside)
+        optionButton.setImage(UIImage(named: "menu_button"), forState: .Normal)
+        optionsBarButton.customView = optionButton
         
         theTableView.registerNib(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: cellID)
         theTableView.separatorInset = UIEdgeInsetsZero;
@@ -63,7 +70,7 @@ class MenuViewController: TipExtraViewController {
             let navController = segue.destinationViewController as! UINavigationController
             let vc = navController.viewControllers[0] as! OrderConfirmationViewController
             vc.theOrder = theOrder
-        } else if segue.identifier == "PopoverSegue" {
+        } else if segue.identifier == kOptionsPopoverSegue {
             if let controller = segue.destinationViewController as? UIViewController {
                 controller.popoverPresentationController!.delegate = self
                 controller.preferredContentSize = CGSize(width: 180, height: 75)
@@ -152,6 +159,10 @@ class MenuViewController: TipExtraViewController {
         let loginVc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginNavController") as! UINavigationController
         loginVc.modalTransitionStyle = .CrossDissolve
         self.presentViewController(loginVc, animated: animated, completion: nil)
+    }
+    
+    func optionsButtonTapped() {
+        self.performSegueWithIdentifier(kOptionsPopoverSegue, sender: self)
     }
     
     //MARK: Actions

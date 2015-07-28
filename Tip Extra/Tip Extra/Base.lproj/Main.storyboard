@@ -360,13 +360,14 @@
                         <barButtonItem key="rightBarButtonItem" title="..." style="done" id="6Nc-95-xMG">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="qhY-pV-drT" kind="popoverPresentation" identifier="PopoverSegue" popoverAnchorBarButtonItem="6Nc-95-xMG" id="a5a-3g-JfH">
+                                <segue destination="qhY-pV-drT" kind="popoverPresentation" identifier="optionsPopoverSegue" popoverAnchorBarButtonItem="6Nc-95-xMG" id="a5a-3g-JfH">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="optionsBarButton" destination="6Nc-95-xMG" id="2f2-gF-Vwk"/>
                         <outlet property="placeOrderView" destination="8Nw-xQ-6M2" id="Ed9-DE-Y4O"/>
                         <outlet property="theTableView" destination="tWV-Vc-m47" id="ln1-JR-3AV"/>
                         <segue destination="vRj-ZT-LBv" kind="presentation" identifier="orderConfirmationSegue" id="f2A-nv-tN4"/>
