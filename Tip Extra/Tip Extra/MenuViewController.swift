@@ -8,6 +8,7 @@
 
 import UIKit
 import SVProgressHUD
+import Alamofire
 
 class MenuViewController: TipExtraViewController {
     
@@ -49,10 +50,9 @@ class MenuViewController: TipExtraViewController {
         
         if let userDict = DefaultsManager.userDict {
             appDelegate.theUser = User(userDict: userDict)
+            APIManager.setToken()
         } else {
-            let loginVc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginNavController") as! UINavigationController
-            loginVc.modalTransitionStyle = .CrossDissolve
-            self.presentViewController(loginVc, animated: false, completion: nil)
+            presentLogin(false)
         }
     }
     
@@ -104,7 +104,7 @@ class MenuViewController: TipExtraViewController {
                             SVProgressHUD.dismiss()
                             if responseStatus == Utils.kSuccessStatus {
                                 self.menuItems = responseArray
-                                self.theTableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Bottom)
+                                self.theTableView.reloadData()
                                 self.selectedOrderItems = NSMutableArray()
                                 self.updateOrder()
                             } else {
@@ -148,6 +148,12 @@ class MenuViewController: TipExtraViewController {
         theTableView.reloadData()
     }
     
+    func presentLogin(animated: Bool) {
+        let loginVc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginNavController") as! UINavigationController
+        loginVc.modalTransitionStyle = .CrossDissolve
+        self.presentViewController(loginVc, animated: animated, completion: nil)
+    }
+    
     //MARK: Actions
     
     func placeOrderTapGesture(gr: UIGestureRecognizer) {
@@ -161,10 +167,9 @@ class MenuViewController: TipExtraViewController {
         let orderDict = ["order": ["line_items_attributes": orderItems]]
         APIManager.placeOrder(orderDict, success: { (responseStatus, responseDict) -> () in
             if responseStatus == Utils.kSuccessStatus {
-                self.theOrder = responseDict["order"] as! Order
                 self.performSegueWithIdentifier(self.kOrderConfirmationSegue, sender: self)
             } else {
-                //TODO: Handle error
+                self.showErrorAlertWithTitle("Uh oh!", theMessage: "You didn't select and drinks!")
             }
             
         }) { (error) -> () in

@@ -19,7 +19,7 @@ class MenuItem: NSObject {
     var quantity: Int = 0
     
     convenience override init() {
-        self.init(drinkDict: ["":""])
+        self.init(drinkDict: ["id": -1, "name": "", "price": 0, "image": ["image_url": "", "thumb_url": ""]])
     }
     
     init(drinkDict: [String: AnyObject]) {

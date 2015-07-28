@@ -58,14 +58,24 @@ class APIManager: NSObject {
                     DefaultsManager.userDict = userDict
                     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                     appDelegate.theUser = User(userDict: userDict)
-                    
-                    var manager = Manager.sharedInstance
-                    manager.session.configuration.HTTPAdditionalHeaders = [
-                        "Authorization": "Token token=\(appDelegate.theUser?.authToken)"
-                    ]
+                    self.setToken()
                 }
                 
                 success(responseStatus: status, responseDict: jsonDict)
+            }
+        }
+    }
+    
+    class func logout(success: (responseStatus: Int!, responseDict: NSDictionary!)->(), failure: (error: NSError!)->()) {
+     
+        let url = kBaseURL + "sessions"
+        Manager.sharedInstance.request(.DELETE, url, parameters: nil, encoding: .JSON)
+        .responseJSON { (request, response, JSON, error) -> Void in
+            
+            if error != nil {
+                failure(error: error)
+            } else {
+                DefaultsManager.userDict = nil
             }
         }
     }
@@ -75,15 +85,13 @@ class APIManager: NSObject {
     class func getMenus(success: (responseStatus: Int!, responseArray: NSArray!)->(), failure: (error: NSError!)->()) {
         
         let url = kBaseURL + "menus"
-        Alamofire.request(.GET, url, parameters: nil, encoding: .JSON)
+        Manager.sharedInstance.request(.GET, url, parameters: nil, encoding: .JSON)
         .responseJSON { (request, response, JSON, error) -> Void in
             
             if error != nil {
                 failure(error: error)
             } else {
-                
                 println(JSON)
-
                 var jsonDict = JSON as! NSDictionary
                 if jsonDict.objectForKey(Utils.kErrorsKey) != nil {
                     let errorDict = jsonDict.objectForKey(Utils.kErrorsKey) as! NSDictionary
@@ -106,15 +114,13 @@ class APIManager: NSObject {
     class func getItemsForMenu(menu: Menu, success: (responseStatus: Int!, responseArray: NSArray!)->(), failure: (error: NSError!)->()) {
         
         let url = kBaseURL + "menus/\(menu.menuID)"
-        Alamofire.request(.GET, url, parameters: nil, encoding: .JSON)
+        Manager.sharedInstance.request(.GET, url, parameters: nil, encoding: .JSON)
         .responseJSON { (request, response, JSON, error) -> Void in
                 
             if error != nil {
                 failure(error: error)
             } else {
-                
                 println(JSON)
-        
                 var jsonDict = JSON as! NSDictionary
                 if jsonDict.objectForKey(Utils.kErrorsKey) != nil {
                     let errorDict = jsonDict.objectForKey(Utils.kErrorsKey) as! NSDictionary
@@ -140,15 +146,15 @@ class APIManager: NSObject {
     class func getImage(path: String, success: (theImage: UIImage!)->(), failure: (error: NSError!)->()) {
         
         Alamofire.request(.GET, NSURL(string: path)!)
-            .response() { (_, _, data, error) in
-                
-                if error != nil {
-                    failure(error: error)
-                }
-                else {
-                    let image = UIImage(data: data! as! NSData)
+        .response() { (_, _, data, error) in
+            if error != nil {
+                failure(error: error)
+            }
+            else {
+                if let image = UIImage(data: data! as! NSData) {
                     success(theImage: image)
                 }
+            }
         }
     }
     
@@ -157,22 +163,33 @@ class APIManager: NSObject {
     class func placeOrder(orderDict: [String: AnyObject], success: (responseStatus: Int!, responseDict: NSDictionary!)->(), failure: (error: NSError!)->()) {
         
         let url = kBaseURL + "orders"
-        Alamofire.request(.POST, url, parameters: nil, encoding: .JSON)
+        Manager.sharedInstance.request(.POST, url, parameters: orderDict, encoding: .JSON)
         .responseJSON { (request, response, JSON, error) -> Void in
-            
             if error != nil {
                 failure(error: error)
             } else {
+                println(JSON)
                 var jsonDict = JSON as! NSDictionary
                 if jsonDict.objectForKey(Utils.kErrorsKey) != nil {
                     let errorDict = jsonDict.objectForKey(Utils.kErrorsKey) as! NSDictionary
                     success(responseStatus: Utils.kFailureStatus, responseDict: errorDict)
                 } else {
-                    let orderDict = jsonDict.objectForKey("order") as! [String: AnyObject]
-                    let order = Order(orderDict: orderDict)
-                    success(responseStatus: Utils.kSuccessStatus, responseDict:["order": order])
+                    success(responseStatus: Utils.kSuccessStatus, responseDict:["":""])
                 }
             }
         }
+    }
+    
+    class func setToken() {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        var manager = Manager.sharedInstance
+        manager.session.configuration.HTTPAdditionalHeaders = [
+            "Authorization": "Token token=\(appDelegate.theUser!.authToken)"
+        ]
+    }
+    
+    class func removeToken() {
+        var manager = Manager.sharedInstance
+        manager.session.configuration.HTTPAdditionalHeaders?.updateValue("", forKey: "Authorization")
     }
 }

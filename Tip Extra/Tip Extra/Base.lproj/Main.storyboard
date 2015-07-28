@@ -775,10 +775,10 @@
             </objects>
             <point key="canvasLocation" x="564" y="440"/>
         </scene>
-        <!--View Controller-->
+        <!--Logout View Controller-->
         <scene sceneID="KfP-8V-YAT">
             <objects>
-                <viewController storyboardIdentifier="LogoutPopover" id="qhY-pV-drT" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LogoutPopover" id="qhY-pV-drT" customClass="LogoutViewController" customModule="Tip_Extra" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mZb-9E-gU0"/>
                         <viewControllerLayoutGuide type="bottom" id="nZp-xS-l7J"/>
@@ -799,6 +799,7 @@
                                     <action selector="continueButtonTapped:" destination="Ge5-Bb-s6h" eventType="touchUpInside" id="iwa-Tu-gnj"/>
                                     <action selector="finishButtonTapped:" destination="u8O-PV-oai" eventType="touchUpInside" id="QCZ-QC-pdE"/>
                                     <action selector="loginButtonTapped:" destination="K38-EL-Zka" eventType="touchUpInside" id="XZm-b9-v1U"/>
+                                    <action selector="logoutButtonTapped:" destination="qhY-pV-drT" eventType="touchUpInside" id="Lfv-VK-xRK"/>
                                 </connections>
                             </button>
                         </subviews>

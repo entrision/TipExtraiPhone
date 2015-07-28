@@ -26,9 +26,10 @@ class MenuCell: UITableViewCell {
         
         didSet {
             
-            APIManager.getImage(menuItem.imageURL, success: { (theImage) -> () in
+            APIManager.getImage(menuItem.thumbURL, success: { (theImage) -> () in
                 self.theImageView.image = theImage
             }) { (error) -> () in
+                println(error)
             }
             
             nameLabel.text = menuItem.name

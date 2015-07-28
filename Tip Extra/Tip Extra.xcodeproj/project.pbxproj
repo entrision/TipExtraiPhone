@@ -49,6 +49,7 @@
 		04F5AF1F1B592F320078D38C /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F5AF1E1B592F320078D38C /* DatePickerView.swift */; };
 		04F5AF211B592F3A0078D38C /* DatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F5AF201B592F3A0078D38C /* DatePickerView.xib */; };
 		04F5AF241B593FC70078D38C /* MenuTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F5AF231B593FC70078D38C /* MenuTitleView.xib */; };
+		04FB146C1B681701009CAB07 /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FB146B1B681701009CAB07 /* LogoutViewController.swift */; };
 		83363E6A3559F16B28F86E3A /* Pods_Tip_Extra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4988307C4FE87FD63F182FBA /* Pods_Tip_Extra.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -110,6 +111,7 @@
 		04F5AF1E1B592F320078D38C /* DatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		04F5AF201B592F3A0078D38C /* DatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerView.xib; sourceTree = "<group>"; };
 		04F5AF231B593FC70078D38C /* MenuTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTitleView.xib; sourceTree = "<group>"; };
+		04FB146B1B681701009CAB07 /* LogoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
 		127124D328031EA63C2ABE28 /* Pods-Tip Extra.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tip Extra.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tip Extra/Pods-Tip Extra.release.xcconfig"; sourceTree = "<group>"; };
 		4988307C4FE87FD63F182FBA /* Pods_Tip_Extra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tip_Extra.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E136D2D1F80794B1E9C3005A /* Pods-Tip Extra.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tip Extra.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tip Extra/Pods-Tip Extra.debug.xcconfig"; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				04E17A471B559EC000608F85 /* Registration */,
 				04E17A451B559EB200608F85 /* LoginViewController.swift */,
 				046529061B558FC900FA126B /* MenuViewController.swift */,
+				04FB146B1B681701009CAB07 /* LogoutViewController.swift */,
 				04C25CEE1B5E930A001F351C /* OrderConfirmationViewController.swift */,
 				0462AB1E1B5EBDE100D00C97 /* API */,
 				047B3BDF1B56A1F30079735B /* Model */,
@@ -471,6 +474,7 @@
 				046529071B558FC900FA126B /* MenuViewController.swift in Sources */,
 				04E17A441B55955F00608F85 /* CardInfoViewController.swift in Sources */,
 				047B3BE11B56A3580079735B /* Order.swift in Sources */,
+				04FB146C1B681701009CAB07 /* LogoutViewController.swift in Sources */,
 				04D3875D1B62B18900EED289 /* DefaultsManager.swift in Sources */,
 				04C25CEC1B5E864D001F351C /* PlaceOrderView.swift in Sources */,
 				04E17A491B559F3400608F85 /* ActivityButton.swift in Sources */,
