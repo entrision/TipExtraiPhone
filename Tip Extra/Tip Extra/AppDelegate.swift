@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Braintree
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor.blackColor()
         UINavigationBar.appearance().translucent = false
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Raleway", size: 20.0)!]
+        
+        Braintree.setReturnURLScheme("com.entrision.Tip-Extra.payments")
         
         return true
     }
@@ -47,6 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        return Braintree.handleOpenURL(url, sourceApplication: sourceApplication)
+    }
 }
 

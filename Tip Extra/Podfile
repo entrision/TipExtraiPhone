@@ -8,7 +8,7 @@ target 'Tip Extra' do
     
     pod 'Alamofire', '~> 1.2'
     pod 'SVProgressHUD'
-    pod 'Braintree/Apple-Pay'
+    pod 'Braintree'
 
 end
 
