@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     var theUser: User?
+    var braintree: Braintree?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -44,6 +45,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        APIManager.getBraintreeToken({ (braintreeToken) -> () in
+            self.braintree = Braintree(clientToken: braintreeToken)
+        }, failure: { (error) -> () in
+                println(error)
+        })
     }
 
     func applicationWillTerminate(application: UIApplication) {

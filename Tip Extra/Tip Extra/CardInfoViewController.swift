@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Braintree
 
-class CardInfoViewController: UIViewController {
+class CardInfoViewController: TipExtraViewController {
 
     @IBOutlet weak var cardNameTextField: TipExtraTextField!
     @IBOutlet weak var cardNumberTextField: TipExtraTextField!
@@ -45,6 +46,19 @@ class CardInfoViewController: UIViewController {
         if !isValidEntry() {
             return
         }
+        
+        let cardRequest = BTClientCardRequest()
+        cardRequest.number = cardNumberTextField.text
+        cardRequest.expirationDate = expDateTextField.text
+        
+        self.appDelegate.braintree?.tokenizeCard(cardRequest, completion: { (nonce, error) -> Void in
+            if error != nil {
+                println(error)
+            } else {
+                //TODO: Send to server
+                println(nonce)
+            }
+        })
     }
     
     

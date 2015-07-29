@@ -116,7 +116,6 @@ class LoginViewController: TipExtraViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
 
 extension LoginViewController: UITextFieldDelegate {

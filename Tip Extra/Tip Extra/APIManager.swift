@@ -58,7 +58,7 @@ class APIManager: NSObject {
                     DefaultsManager.userDict = userDict
                     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                     appDelegate.theUser = User(userDict: userDict)
-                    self.setToken()
+                    self.setUserToken()
                 }
                 
                 success(responseStatus: status, responseDict: jsonDict)
@@ -146,11 +146,11 @@ class APIManager: NSObject {
     class func getImage(path: String, success: (theImage: UIImage!)->(), failure: (error: NSError!)->()) {
         
         //removing auth header for call to amazon servers
-        removeToken()
+        removeUserToken()
         
         Alamofire.request(.GET, NSURL(string: path)!)
         .response() { (_, _, data, error) in
-            self.setToken()
+            self.setUserToken()
             if error != nil {
                 failure(error: error)
             }
@@ -188,14 +188,34 @@ class APIManager: NSObject {
         }
     }
     
-    class func setToken() {
+    //MARK: Braintree
+    
+    class func getBraintreeToken(success: (braintreeToken: String!)->(), failure: (error: NSError!)->()) {
+
+        let url = kBaseURL + "client_token"
+        Alamofire.request(.GET, url, parameters: nil, encoding: .JSON)
+        .responseJSON { (request, response, JSON, error) -> Void in
+            if error != nil {
+                failure(error: error)
+            } else {
+                println(JSON)
+                var jsonDict = JSON as! NSDictionary
+                let token = jsonDict.objectForKey("token") as! String
+                success(braintreeToken: token)
+            }
+        }
+    }
+    
+    //MARK: Misc methods
+    
+    class func setUserToken() {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = [
             "Authorization": "Token token=\(appDelegate.theUser!.authToken)"
         ]
     }
     
-    class func removeToken() {
+    class func removeUserToken() {
         Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders?.updateValue("", forKey: "Authorization")
     }
 }

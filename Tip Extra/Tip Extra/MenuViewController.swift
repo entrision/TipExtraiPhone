@@ -58,7 +58,7 @@ class MenuViewController: TipExtraViewController {
         
         if let userDict = DefaultsManager.userDict {
             appDelegate.theUser = User(userDict: userDict)
-            APIManager.setToken()
+            APIManager.setUserToken()
         } else {
             presentLogin(false)
         }
@@ -76,6 +76,37 @@ class MenuViewController: TipExtraViewController {
                 controller.popoverPresentationController!.delegate = self
                 controller.preferredContentSize = CGSize(width: 180, height: 75)
             }
+        }
+    }
+    
+    //MARK: Actions
+    
+    func placeOrderTapGesture(gr: UIGestureRecognizer) {
+        
+        let orderItems = NSMutableArray()
+        for menuItem in theOrder.orderItems as! [MenuItem] {
+            let itemDict = ["drink_id": menuItem.itemID, "qty": menuItem.quantity]
+            orderItems.addObject(itemDict)
+        }
+
+        SVProgressHUD.showWithStatus("Placing order")
+        let orderDict = ["order": ["line_items_attributes": orderItems]]
+        APIManager.placeOrder(orderDict, success: { (responseStatus, responseDict) -> () in
+            SVProgressHUD.dismiss()
+            if responseStatus == Utils.kSuccessStatus {
+                if responseDict.objectForKey("message") != nil {
+                    self.showErrorAlertWithTitle("Oops!", theMessage: responseDict.objectForKey("message") as! String)
+                } else {
+                    self.performSegueWithIdentifier(self.kOrderConfirmationSegue, sender: self)
+                }
+            } else {
+                self.showErrorAlertWithTitle("Uh oh!", theMessage: "You didn't select and drinks!")
+            }
+
+        }) { (error) -> () in
+            SVProgressHUD.dismiss()
+            println(error)
+            self.showDefaultErrorAlert()
         }
     }
     
@@ -168,35 +199,8 @@ class MenuViewController: TipExtraViewController {
         self.performSegueWithIdentifier(kOptionsPopoverSegue, sender: self)
     }
     
-    //MARK: Actions
-    
-    func placeOrderTapGesture(gr: UIGestureRecognizer) {
-        
-        let orderItems = NSMutableArray()
-        for menuItem in theOrder.orderItems as! [MenuItem] {
-            let itemDict = ["drink_id": menuItem.itemID, "qty": menuItem.quantity]
-            orderItems.addObject(itemDict)
-        }
-        
-        SVProgressHUD.showWithStatus("Placing order")
-        let orderDict = ["order": ["line_items_attributes": orderItems]]
-        APIManager.placeOrder(orderDict, success: { (responseStatus, responseDict) -> () in
-            SVProgressHUD.dismiss()
-            if responseStatus == Utils.kSuccessStatus {
-                if responseDict.objectForKey("message") != nil {
-                    self.showErrorAlertWithTitle("Oops!", theMessage: responseDict.objectForKey("message") as! String)
-                } else {
-                    self.performSegueWithIdentifier(self.kOrderConfirmationSegue, sender: self)
-                }
-            } else {
-                self.showErrorAlertWithTitle("Uh oh!", theMessage: "You didn't select and drinks!")
-            }
-            
-        }) { (error) -> () in
-            SVProgressHUD.dismiss()
-            println(error)
-            self.showDefaultErrorAlert()
-        }
+    func braintreePaymentCancelled() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
 
@@ -232,8 +236,6 @@ extension MenuViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
-        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
