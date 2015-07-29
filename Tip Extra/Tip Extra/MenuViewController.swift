@@ -159,7 +159,9 @@ class MenuViewController: TipExtraViewController {
     func presentLogin(animated: Bool) {
         let loginVc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginNavController") as! UINavigationController
         loginVc.modalTransitionStyle = .CrossDissolve
-        self.presentViewController(loginVc, animated: animated, completion: nil)
+        self.presentViewController(loginVc, animated: animated, completion: {
+            self.resetMenu()
+        })
     }
     
     func optionsButtonTapped() {

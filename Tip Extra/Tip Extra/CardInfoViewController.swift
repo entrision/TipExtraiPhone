@@ -106,13 +106,29 @@ extension CardInfoViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(textField: UITextField) {
         
         if textField == cardNameTextField {
-            cardNameErrorLabel.hidden = textField.text != ""
+            if cardNameErrorLabel.hidden == false {
+                if textField.text != "" {
+                    cardNameErrorLabel.hidden = true
+                }
+            }
         } else if textField == cardNumberTextField {
-            cardNumberErrorLabel.hidden = textField.text != ""
+            if cardNumberErrorLabel.hidden == false {
+                if textField.text != "" {
+                    cardNumberErrorLabel.hidden = true
+                }
+            }
         } else if textField == expDateTextField {
-            expDateErrorLabel.hidden = textField.text != ""
+            if expDateErrorLabel.hidden == false {
+                if textField.text != "" {
+                    expDateErrorLabel.hidden = true
+                }
+            }
         } else if textField == securityCodeTextField {
-            securityCodeErrorLabel.hidden = textField.text != ""
+            if securityCodeErrorLabel.hidden == false {
+                if textField.text != "" {
+                    securityCodeErrorLabel.hidden = true
+                }
+            }
         }
     }
     

@@ -149,15 +149,35 @@ extension RegisterViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(textField: UITextField) {
         
         if textField == firstNameTextField {
-            firstNameErrorLabel.hidden = textField.text != ""
+            if firstNameErrorLabel.hidden == false {
+                if textField.text != "" {
+                    firstNameErrorLabel.hidden = true
+                }
+            }
         } else if textField == lastNameTextField {
-            lastNameErrorLabel.hidden = textField.text != ""
+            if lastNameErrorLabel.hidden == false {
+                if textField.text != "" {
+                    lastNameErrorLabel.hidden = true
+                }
+            }
         } else if textField == emailTextField {
-            emailErrorLabel.hidden = textField.text != ""
+            if emailErrorLabel.hidden == false {
+                if textField.text != "" {
+                    emailErrorLabel.hidden = true
+                }
+            }
         } else if textField == passwordTextField {
-            passwordErrorLabel.hidden = textField.text != ""
+            if passwordErrorLabel.hidden == false {
+                if textField.text != "" {
+                    passwordErrorLabel.hidden = true
+                }
+            }
         } else if textField == confirmTextField {
-            confirmErrorLabel.hidden = textField.text != ""
+            if confirmErrorLabel.hidden == false {
+                if textField.text != "" {
+                    confirmErrorLabel.hidden = true
+                }
+            }
         }
     }
     

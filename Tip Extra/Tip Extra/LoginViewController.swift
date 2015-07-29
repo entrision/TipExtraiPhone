@@ -124,9 +124,17 @@ extension LoginViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(textField: UITextField) {
         
         if textField == emailTextField {
-            emailErrorLabel.hidden = textField.text != ""
+            if emailErrorLabel.hidden == false {
+                if textField.text != "" {
+                    emailErrorLabel.hidden = true
+                }
+            }
         } else if textField == passwordTextField {
-            passwordErrorLabel.hidden = textField.text != ""
+            if passwordErrorLabel.hidden == false {
+                if textField.text != "" {
+                    passwordErrorLabel.hidden = true
+                }
+            }
         }
     }
     
