@@ -42,6 +42,7 @@ class MenuViewController: TipExtraViewController {
         theTableView.layoutMargins = UIEdgeInsetsZero;
         theTableView.separatorColor = UIColor.darkGrayColor()
         theTableView.backgroundColor = UIColor(white: 0.05, alpha: 1.0)
+        theTableView.tableFooterView = UIView()
         
         dummyCell = NSBundle.mainBundle().loadNibNamed("MenuCell", owner: self, options: nil)[0] as! MenuCell
         
@@ -175,15 +176,22 @@ class MenuViewController: TipExtraViewController {
             orderItems.addObject(itemDict)
         }
         
+        SVProgressHUD.showWithStatus("Placing order")
         let orderDict = ["order": ["line_items_attributes": orderItems]]
         APIManager.placeOrder(orderDict, success: { (responseStatus, responseDict) -> () in
+            SVProgressHUD.dismiss()
             if responseStatus == Utils.kSuccessStatus {
-                self.performSegueWithIdentifier(self.kOrderConfirmationSegue, sender: self)
+                if responseDict.objectForKey("message") != nil {
+                    self.showErrorAlertWithTitle("Oops!", theMessage: responseDict.objectForKey("message") as! String)
+                } else {
+                    self.performSegueWithIdentifier(self.kOrderConfirmationSegue, sender: self)
+                }
             } else {
                 self.showErrorAlertWithTitle("Uh oh!", theMessage: "You didn't select and drinks!")
             }
             
         }) { (error) -> () in
+            SVProgressHUD.dismiss()
             println(error)
             self.showDefaultErrorAlert()
         }

@@ -69,7 +69,7 @@ class APIManager: NSObject {
     class func logout(success: (responseStatus: Int!, responseDict: NSDictionary!)->(), failure: (error: NSError!)->()) {
      
         let url = kBaseURL + "sessions"
-        Manager.sharedInstance.request(.DELETE, url, parameters: nil, encoding: .JSON)
+        Alamofire.request(.DELETE, url, parameters: nil, encoding: .JSON)
         .responseJSON { (request, response, JSON, error) -> Void in
             
             if error != nil {
@@ -85,7 +85,7 @@ class APIManager: NSObject {
     class func getMenus(success: (responseStatus: Int!, responseArray: NSArray!)->(), failure: (error: NSError!)->()) {
         
         let url = kBaseURL + "menus"
-        Manager.sharedInstance.request(.GET, url, parameters: nil, encoding: .JSON)
+        Alamofire.request(.GET, url, parameters: nil, encoding: .JSON)
         .responseJSON { (request, response, JSON, error) -> Void in
             
             if error != nil {
@@ -114,7 +114,7 @@ class APIManager: NSObject {
     class func getItemsForMenu(menu: Menu, success: (responseStatus: Int!, responseArray: NSArray!)->(), failure: (error: NSError!)->()) {
         
         let url = kBaseURL + "menus/\(menu.menuID)"
-        Manager.sharedInstance.request(.GET, url, parameters: nil, encoding: .JSON)
+        Alamofire.request(.GET, url, parameters: nil, encoding: .JSON)
         .responseJSON { (request, response, JSON, error) -> Void in
                 
             if error != nil {
@@ -145,8 +145,12 @@ class APIManager: NSObject {
     
     class func getImage(path: String, success: (theImage: UIImage!)->(), failure: (error: NSError!)->()) {
         
+        //removing auth header for call to amazon servers
+        removeToken()
+        
         Alamofire.request(.GET, NSURL(string: path)!)
         .response() { (_, _, data, error) in
+            self.setToken()
             if error != nil {
                 failure(error: error)
             }
@@ -163,7 +167,7 @@ class APIManager: NSObject {
     class func placeOrder(orderDict: [String: AnyObject], success: (responseStatus: Int!, responseDict: NSDictionary!)->(), failure: (error: NSError!)->()) {
         
         let url = kBaseURL + "orders"
-        Manager.sharedInstance.request(.POST, url, parameters: orderDict, encoding: .JSON)
+        Alamofire.request(.POST, url, parameters: orderDict, encoding: .JSON)
         .responseJSON { (request, response, JSON, error) -> Void in
             if error != nil {
                 failure(error: error)
@@ -174,7 +178,11 @@ class APIManager: NSObject {
                     let errorDict = jsonDict.objectForKey(Utils.kErrorsKey) as! NSDictionary
                     success(responseStatus: Utils.kFailureStatus, responseDict: errorDict)
                 } else {
-                    success(responseStatus: Utils.kSuccessStatus, responseDict:["":""])
+                    if jsonDict.count > 0 {
+                        success(responseStatus: Utils.kSuccessStatus, responseDict:jsonDict)
+                    } else {
+                        success(responseStatus: Utils.kSuccessStatus, responseDict:["":""])
+                    }
                 }
             }
         }
@@ -182,14 +190,12 @@ class APIManager: NSObject {
     
     class func setToken() {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        var manager = Manager.sharedInstance
-        manager.session.configuration.HTTPAdditionalHeaders = [
+        Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = [
             "Authorization": "Token token=\(appDelegate.theUser!.authToken)"
         ]
     }
     
     class func removeToken() {
-        var manager = Manager.sharedInstance
-        manager.session.configuration.HTTPAdditionalHeaders?.updateValue("", forKey: "Authorization")
+        Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders?.updateValue("", forKey: "Authorization")
     }
 }

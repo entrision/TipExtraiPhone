@@ -131,7 +131,7 @@
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5wW-7P-nhK">
                                 <rect key="frame" x="239" y="584" width="122" height="1"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="122" id="S6f-Wf-gQS"/>
                                     <constraint firstAttribute="height" constant="1" id="xPr-SF-N88"/>
@@ -512,11 +512,11 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4bK-HQ-x2L">
-                                <rect key="frame" x="269" y="417" width="63" height="2"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="269" y="417" width="63" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="63" id="19G-Sd-wUT"/>
-                                    <constraint firstAttribute="height" constant="2" id="RfU-1G-NVZ"/>
+                                    <constraint firstAttribute="height" constant="1" id="RfU-1G-NVZ"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -628,7 +628,7 @@
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OBF-TW-coC">
                                 <rect key="frame" x="239" y="584" width="122" height="1"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="122" id="SOh-qe-lkM"/>
                                     <constraint firstAttribute="height" constant="1" id="sFT-TM-CXa"/>
