@@ -206,6 +206,19 @@ class APIManager: NSObject {
         }
     }
     
+    class func sendBraintreeNonce(nonceDict: [String: AnyObject], success: ()->(), failure: (error: NSError!)->()) {
+        
+        let url = kBaseURL + "payment_nonce"
+        Alamofire.request(.POST, url, parameters: nonceDict, encoding: .JSON)
+        .responseJSON { (request, response, JSON, error) -> Void in
+            if error != nil {
+                failure(error: error)
+            } else {
+                success()
+            }
+        }
+    }
+    
     //MARK: Misc methods
     
     class func setUserToken() {

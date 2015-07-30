@@ -59,10 +59,6 @@ class MenuViewController: TipExtraViewController {
         if let userDict = DefaultsManager.userDict {
             appDelegate.theUser = User(userDict: userDict)
             APIManager.setUserToken()
-            
-            if appDelegate.braintree == nil {
-                appDelegate.fetchBraintreeToken()
-            }
         } else {
             presentLogin(false)
         }

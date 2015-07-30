@@ -61,8 +61,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func fetchBraintreeToken() {
         APIManager.getBraintreeToken({ (braintreeToken) -> () in
             self.braintree = Braintree(clientToken: braintreeToken)
-            }, failure: { (error) -> () in
-                println(error)
+        }, failure: { (error) -> () in
+            println(error)
         })
     }
 }

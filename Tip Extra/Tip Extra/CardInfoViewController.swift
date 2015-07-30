@@ -8,6 +8,7 @@
 
 import UIKit
 import Braintree
+import SVProgressHUD
 
 class CardInfoViewController: TipExtraViewController {
 
@@ -51,12 +52,26 @@ class CardInfoViewController: TipExtraViewController {
         cardRequest.number = cardNumberTextField.text
         cardRequest.expirationDate = expDateTextField.text
         
+        SVProgressHUD.showWithStatus("Validating card info")
         self.appDelegate.braintree?.tokenizeCard(cardRequest, completion: { (nonce, error) -> Void in
             if error != nil {
+                SVProgressHUD.dismiss()
+                self.showErrorAlertWithTitle("Uh oh!", theMessage: "We were unable to validate your payment method.")
+                self.showMenu()
                 println(error)
             } else {
-                //TODO: Send to server
-                println(nonce)
+                let nonceDict = ["payment": ["nonce": nonce]]
+                APIManager.sendBraintreeNonce(nonceDict, success: { (responseStatus) -> () in
+                    SVProgressHUD.showSuccessWithStatus("Card info verified!")
+                    self.delay(1.5) {
+                        self.showMenu()
+                    }
+                }, failure: { (error) -> () in
+                    SVProgressHUD.dismiss()
+                    self.showErrorAlertWithTitle("Uh oh!", theMessage: "We were unable to validate your payment method.")
+                    self.showMenu()
+                    println(error)
+                })
             }
         })
     }
@@ -99,6 +114,13 @@ class CardInfoViewController: TipExtraViewController {
         }
         
         return isValid
+    }
+    
+    func showMenu() {
+        self.dismissViewControllerAnimated(true, completion:nil)
+        let navController = self.presentingViewController as! UINavigationController
+        let menuController = navController.viewControllers[0] as! MenuViewController
+        menuController.addMenuItems()
     }
 }
 
