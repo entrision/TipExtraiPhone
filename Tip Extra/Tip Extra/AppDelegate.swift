@@ -45,12 +45,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        
-        APIManager.getBraintreeToken({ (braintreeToken) -> () in
-            self.braintree = Braintree(clientToken: braintreeToken)
-        }, failure: { (error) -> () in
-                println(error)
-        })
+        if DefaultsManager.userDict != nil {
+            self.fetchBraintreeToken()
+        }
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -59,6 +56,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         return Braintree.handleOpenURL(url, sourceApplication: sourceApplication)
+    }
+    
+    func fetchBraintreeToken() {
+        APIManager.getBraintreeToken({ (braintreeToken) -> () in
+            self.braintree = Braintree(clientToken: braintreeToken)
+            }, failure: { (error) -> () in
+                println(error)
+        })
     }
 }
 
