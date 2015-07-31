@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Braintree
 
 class RegisterViewController: TipExtraViewController {
     
@@ -61,10 +62,15 @@ class RegisterViewController: TipExtraViewController {
         
         continueButton.startAnimating()
         APIManager.createUser(userDict, success: { (responseStatus, responseDict) -> () in
-            
-            self.continueButton.stopAnimating()
             if responseStatus == Utils.kSuccessStatus {
-                self.performSegueWithIdentifier(self.cardInfoSegue, sender: self)
+                APIManager.getBraintreeToken({ (braintreeToken) -> () in
+                    self.continueButton.stopAnimating()
+                    self.appDelegate.braintree = Braintree(clientToken: braintreeToken)
+                    self.performSegueWithIdentifier(self.cardInfoSegue, sender: self)
+                }, failure: { (error) -> () in
+                    println(error)
+                    self.continueButton.stopAnimating()
+                })
             } else {
                 
                 for var i=0; i<responseDict.count; i++ {
