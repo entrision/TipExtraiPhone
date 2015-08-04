@@ -34,14 +34,14 @@ class ActivityButton: UIButton {
     }
     
     func startAnimating() {
-        
+        enabled = false
         theTitle = self.currentTitle!
         self.setTitle("", forState: .Normal)
         activityIndicator.startAnimating()
     }
     
     func stopAnimating() {
-        
+        enabled = true
         self.setTitle(theTitle, forState: .Normal)
         activityIndicator.stopAnimating()
     }

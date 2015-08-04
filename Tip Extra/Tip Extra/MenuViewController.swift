@@ -100,7 +100,8 @@ class MenuViewController: TipExtraViewController {
                     self.performSegueWithIdentifier(self.kOrderConfirmationSegue, sender: self)
                 }
             } else {
-                self.showErrorAlertWithTitle("Uh oh!", theMessage: "You didn't select and drinks!")
+                self.showErrorAlertWithTitle("Uh oh!", theMessage: "This menu is currently unavailable")
+                self.resetMenu()
             }
 
         }) { (error) -> () in
