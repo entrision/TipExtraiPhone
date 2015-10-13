@@ -72,10 +72,9 @@ class MenuViewController: TipExtraViewController {
             let vc = navController.viewControllers[0] as! OrderConfirmationViewController
             vc.theOrder = theOrder
         } else if segue.identifier == kOptionsPopoverSegue {
-            if let controller = segue.destinationViewController as? UIViewController {
-                controller.popoverPresentationController!.delegate = self
-                controller.preferredContentSize = CGSize(width: 180, height: 75)
-            }
+            let controller = segue.destinationViewController
+            controller.popoverPresentationController!.delegate = self
+            controller.preferredContentSize = CGSize(width: 180, height: 75)
         }
     }
     
@@ -106,7 +105,7 @@ class MenuViewController: TipExtraViewController {
 
         }) { (error) -> () in
             SVProgressHUD.dismiss()
-            println(error)
+            print(error)
             self.showDefaultErrorAlert()
         }
     }
@@ -150,12 +149,12 @@ class MenuViewController: TipExtraViewController {
                             } else {
                                 //Only expecting 'Access Denied" error here
                                 self.showErrorAlertWithTitle("Access Denied", theMessage: "User not authenticated")
-                                println(responseArray[0])
+                                print(responseArray[0])
                             }
                             }, failure: { (error) -> () in
                                 SVProgressHUD.dismiss()
                                 self.showDefaultErrorAlert()
-                                println(error)
+                                print(error)
                         })
                     } else {
                         self.theTableView.hidden = true
@@ -163,13 +162,13 @@ class MenuViewController: TipExtraViewController {
                 } else {
                     //Only expecting 'Access Denied" error here
                     self.showErrorAlertWithTitle("Access Denied", theMessage: "User not authenticated")
-                    println(responseArray[0])
+                    print(responseArray[0])
                 }
                 
                 }, failure: { (error) -> () in
                     SVProgressHUD.dismiss()
                     self.showDefaultErrorAlert()
-                    println(error)
+                    print(error)
             })
         }
     }
@@ -217,7 +216,7 @@ extension MenuViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellID, forIndexPath: indexPath) as! MenuCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellID, forIndexPath: indexPath) as! MenuCell
         
         let menuItem = menuItems[indexPath.row] as! MenuItem
         cell.menuItem = menuItem

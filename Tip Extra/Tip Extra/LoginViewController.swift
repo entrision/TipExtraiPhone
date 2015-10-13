@@ -44,8 +44,8 @@ class LoginViewController: TipExtraViewController {
         }
         
         view.endEditing(true)
-        let loginDict = ["user": ["email": emailTextField.text.lowercaseString,
-            "password": passwordTextField.text]]
+        let loginDict = ["user": ["email": emailTextField.text!.lowercaseString,
+        "password": passwordTextField.text!]]
         
         loginButton.startAnimating()
         APIManager.loginWithDict(loginDict, success: { (responseStatus, responseDict) -> () in

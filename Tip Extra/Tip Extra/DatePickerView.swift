@@ -35,7 +35,7 @@ class DatePickerView: UIView {
         thePicker.delegate = self
 
         let gregorian = NSCalendar(identifier: NSCalendarIdentifierGregorian)
-        let comps = gregorian?.components(.CalendarUnitYear, fromDate: NSDate())
+        let comps = gregorian?.components(.Year, fromDate: NSDate())
         let year = comps?.year
         
         for var i=year!; i<year!+20; i++ {
@@ -70,7 +70,7 @@ extension DatePickerView: UIPickerViewDataSource {
 
 extension DatePickerView: UIPickerViewDelegate {
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         var title = "Row"
         

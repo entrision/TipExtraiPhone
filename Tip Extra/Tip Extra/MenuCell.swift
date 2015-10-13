@@ -29,7 +29,7 @@ class MenuCell: UITableViewCell {
             APIManager.getImage(menuItem.thumbURL, success: { (theImage) -> () in
                 self.theImageView.image = theImage
             }) { (error) -> () in
-                println(error)
+                print(error)
             }
             
             nameLabel.text = menuItem.name

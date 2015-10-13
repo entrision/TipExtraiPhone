@@ -50,7 +50,7 @@
 		04F5AF211B592F3A0078D38C /* DatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F5AF201B592F3A0078D38C /* DatePickerView.xib */; };
 		04F5AF241B593FC70078D38C /* MenuTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F5AF231B593FC70078D38C /* MenuTitleView.xib */; };
 		04FB146C1B681701009CAB07 /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FB146B1B681701009CAB07 /* LogoutViewController.swift */; };
-		83363E6A3559F16B28F86E3A /* Pods_Tip_Extra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4988307C4FE87FD63F182FBA /* Pods_Tip_Extra.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		83363E6A3559F16B28F86E3A /* Pods_Tip_Extra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4988307C4FE87FD63F182FBA /* Pods_Tip_Extra.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -344,11 +344,14 @@
 		046528F71B558FC900FA126B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Entrision;
 				TargetAttributes = {
 					046528FE1B558FC900FA126B = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = HXK9RLY6C2;
 					};
 					046529131B558FC900FA126B = {
 						CreatedOnToolsVersion = 6.4;
@@ -549,6 +552,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -615,8 +619,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hunter Whittle (8G4F839ME8)";
 				INFOPLIST_FILE = "Tip Extra/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "entrision.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tip Extra/Tip-Extra-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -629,8 +636,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Tip Extra/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "entrision.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tip Extra/Tip-Extra-Bridging-Header.h";
 			};
@@ -650,6 +660,7 @@
 				);
 				INFOPLIST_FILE = "Tip ExtraTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "entrision.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tip Extra.app/Tip Extra";
 			};
@@ -665,6 +676,7 @@
 				);
 				INFOPLIST_FILE = "Tip ExtraTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "entrision.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tip Extra.app/Tip Extra";
 			};

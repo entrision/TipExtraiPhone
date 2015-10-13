@@ -6,9 +6,9 @@ use_frameworks!
 
 target 'Tip Extra' do
     
-    pod 'Alamofire', '~> 1.2'
+    pod 'Alamofire', '~> 2.0'
     pod 'SVProgressHUD'
-    pod 'Braintree'
+    pod 'Braintree', '~> 3.9.6'
 
 end
 

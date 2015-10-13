@@ -55,10 +55,10 @@ class RegisterViewController: TipExtraViewController {
             return
         }
         
-        let userDict = ["user": ["first_name": firstNameTextField.text,
-            "last_name": lastNameTextField.text,
-            "email": emailTextField.text,
-            "password": passwordTextField.text]]
+        let userDict = ["user": ["first_name": firstNameTextField.text!,
+            "last_name": lastNameTextField.text!,
+            "email": emailTextField.text!,
+            "password": passwordTextField.text!]]
         
         continueButton.startAnimating()
         APIManager.createUser(userDict, success: { (responseStatus, responseDict) -> () in
@@ -68,7 +68,7 @@ class RegisterViewController: TipExtraViewController {
                     self.appDelegate.braintree = Braintree(clientToken: braintreeToken)
                     self.performSegueWithIdentifier(self.cardInfoSegue, sender: self)
                 }, failure: { (error) -> () in
-                    println(error)
+                    print(error)
                     self.continueButton.stopAnimating()
                 })
             } else {
@@ -101,7 +101,7 @@ class RegisterViewController: TipExtraViewController {
         }) { (error) -> () in
             self.continueButton.stopAnimating()
             self.showDefaultErrorAlert()
-            println(error)
+            print(error)
         }
     }
 

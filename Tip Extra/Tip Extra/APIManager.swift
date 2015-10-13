@@ -38,16 +38,12 @@ class APIManager: NSObject {
     private class func handleAuthentication(url: String, userDict: [String: AnyObject], success: (responseStatus: Int!, responseDict: NSDictionary!)->(), failure: (error: NSError!)->()) {
         
         Alamofire.request(.POST, url, parameters: userDict, encoding: .JSON)
-        .responseJSON { (request, response, JSON, error) -> Void in
-                
-            if error != nil {
-                failure(error: error)
-            } else {
-                
-                println(JSON)
-                
-                var status = 0
-                var jsonDict = JSON as! NSDictionary
+        .responseJSON { (request, response, JSON) -> Void in
+            
+            print(JSON)
+            
+            var status = 0
+            if var jsonDict = JSON.value as? NSDictionary {
                 if jsonDict.objectForKey(Utils.kErrorsKey) != nil {
                     status = Utils.kFailureStatus
                     let errorDict = jsonDict.objectForKey(Utils.kErrorsKey) as! NSDictionary
@@ -70,13 +66,8 @@ class APIManager: NSObject {
      
         let url = kBaseURL + "sessions"
         Alamofire.request(.DELETE, url, parameters: nil, encoding: .JSON)
-        .responseJSON { (request, response, JSON, error) -> Void in
-            
-            if error != nil {
-                failure(error: error)
-            } else {
-                DefaultsManager.userDict = nil
-            }
+        .responseJSON { (request, response, JSON) -> Void in
+            DefaultsManager.userDict = nil
         }
     }
     
@@ -86,13 +77,9 @@ class APIManager: NSObject {
         
         let url = kBaseURL + "menus"
         Alamofire.request(.GET, url, parameters: nil, encoding: .JSON)
-        .responseJSON { (request, response, JSON, error) -> Void in
-            
-            if error != nil {
-                failure(error: error)
-            } else {
-                println(JSON)
-                var jsonDict = JSON as! NSDictionary
+        .responseJSON { (request, response, JSON) -> Void in
+            print(JSON)
+            if let jsonDict = JSON.value as? NSDictionary {
                 if jsonDict.objectForKey(Utils.kErrorsKey) != nil {
                     let errorDict = jsonDict.objectForKey(Utils.kErrorsKey) as! NSDictionary
                     success(responseStatus: Utils.kFailureStatus, responseArray: [errorDict])
@@ -115,13 +102,9 @@ class APIManager: NSObject {
         
         let url = kBaseURL + "menus/\(menu.menuID)"
         Alamofire.request(.GET, url, parameters: nil, encoding: .JSON)
-        .responseJSON { (request, response, JSON, error) -> Void in
-                
-            if error != nil {
-                failure(error: error)
-            } else {
-                println(JSON)
-                var jsonDict = JSON as! NSDictionary
+        .responseJSON { (request, response, JSON) -> Void in
+            print(JSON)
+            if let jsonDict = JSON.value as? NSDictionary {
                 if jsonDict.objectForKey(Utils.kErrorsKey) != nil {
                     let errorDict = jsonDict.objectForKey(Utils.kErrorsKey) as! NSDictionary
                     success(responseStatus: Utils.kFailureStatus, responseArray: [errorDict])
@@ -151,11 +134,8 @@ class APIManager: NSObject {
         Alamofire.request(.GET, NSURL(string: path)!)
         .response() { (_, _, data, error) in
             self.setUserToken()
-            if error != nil {
-                failure(error: error)
-            }
-            else {
-                if let image = UIImage(data: data! as! NSData) {
+            if let theData = data {
+                if let image = UIImage(data: theData) {
                     success(theImage: image)
                 }
             }
@@ -168,12 +148,9 @@ class APIManager: NSObject {
         
         let url = kBaseURL + "orders"
         Alamofire.request(.POST, url, parameters: orderDict, encoding: .JSON)
-        .responseJSON { (request, response, JSON, error) -> Void in
-            if error != nil {
-                failure(error: error)
-            } else {
-                println(JSON)
-                var jsonDict = JSON as! NSDictionary
+        .responseJSON { (request, response, JSON) -> Void in
+            print(JSON)
+            if let jsonDict = JSON.value as? NSDictionary {
                 if jsonDict.objectForKey(Utils.kErrorsKey) != nil {
                     let errorDict = jsonDict.objectForKey(Utils.kErrorsKey) as! NSDictionary
                     success(responseStatus: Utils.kFailureStatus, responseDict: errorDict)
@@ -194,12 +171,9 @@ class APIManager: NSObject {
 
         let url = kBaseURL + "client_token"
         Alamofire.request(.GET, url, parameters: nil, encoding: .JSON)
-        .responseJSON { (request, response, JSON, error) -> Void in
-            if error != nil {
-                failure(error: error)
-            } else {
-                println(JSON)
-                var jsonDict = JSON as! NSDictionary
+        .responseJSON { (request, response, JSON) -> Void in
+            print(JSON)
+            if let jsonDict = JSON.value as? NSDictionary {
                 let token = jsonDict.objectForKey("token") as! String
                 success(braintreeToken: token)
             }
@@ -210,12 +184,8 @@ class APIManager: NSObject {
         
         let url = kBaseURL + "payment_nonce"
         Alamofire.request(.POST, url, parameters: nonceDict, encoding: .JSON)
-        .responseJSON { (request, response, JSON, error) -> Void in
-            if error != nil {
-                failure(error: error)
-            } else {
-                success()
-            }
+        .responseJSON { (request, response, JSON) -> Void in
+            success()
         }
     }
     

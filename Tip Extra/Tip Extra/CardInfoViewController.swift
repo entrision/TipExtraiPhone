@@ -58,20 +58,22 @@ class CardInfoViewController: TipExtraViewController {
                 SVProgressHUD.dismiss()
                 self.showErrorAlertWithTitle("Uh oh!", theMessage: "We were unable to validate your payment method.")
                 self.showMenu()
-                println(error)
+                print(error)
             } else {
-                let nonceDict = ["payment": ["nonce": nonce]]
-                APIManager.sendBraintreeNonce(nonceDict, success: { (responseStatus) -> () in
-                    SVProgressHUD.showSuccessWithStatus("Card info verified!")
-                    self.delay(1.5) {
-                        self.showMenu()
-                    }
-                }, failure: { (error) -> () in
-                    SVProgressHUD.dismiss()
-                    self.showErrorAlertWithTitle("Uh oh!", theMessage: "We were unable to validate your payment method.")
-                    self.showMenu()
-                    println(error)
-                })
+                if let theNonce = nonce {
+                    let nonceDict = ["payment": ["nonce": theNonce]]
+                    APIManager.sendBraintreeNonce(nonceDict, success: { (responseStatus) -> () in
+                        SVProgressHUD.showSuccessWithStatus("Card info verified!")
+                        self.delay(1.5) {
+                            self.showMenu()
+                        }
+                        }, failure: { (error) -> () in
+                            SVProgressHUD.dismiss()
+                            self.showErrorAlertWithTitle("Uh oh!", theMessage: "We were unable to validate your payment method.")
+                            self.showMenu()
+                            print(error)
+                    })
+                }
             }
         })
     }
